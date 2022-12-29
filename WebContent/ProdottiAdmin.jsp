@@ -6,7 +6,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 
-// SONO JOSE LUIS//
+
 
 <%
 User auth = (User) request.getSession().getAttribute("auth");
@@ -29,7 +29,7 @@ if (cart_list != null) {
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ProdottiAdmin</title>
+<title>ProdottiAdminMODIFICATO</title>
 <%@ include file="includes/header.jsp"%>
 </head>
 <body>
