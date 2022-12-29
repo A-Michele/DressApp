@@ -6,7 +6,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 
-// SONO JOSE//
+// SONO JOSE LUIS//
 
 <%
 User auth = (User) request.getSession().getAttribute("auth");
