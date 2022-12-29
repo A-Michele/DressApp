@@ -5,6 +5,9 @@
 <%@page import="entity.dao.ProductDao"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
+
+// SONO JOSE//
+
 <%
 User auth = (User) request.getSession().getAttribute("auth");
 if (auth != null) {
