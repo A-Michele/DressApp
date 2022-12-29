@@ -29,7 +29,7 @@ if (cart_list != null) {
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ProdottiAdminMODIFICATO</title>
+<title>ProdottiAdmin</title>
 <%@ include file="includes/header.jsp"%>
 </head>
 <body>
