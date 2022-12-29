@@ -28,7 +28,7 @@ public class ProductDao {
 	public List<Product> getAllProducts(){
 		List<Product> products=new ArrayList<Product>();
 		try {
-			query="SELECT * FROM prodotto";
+			query="SELECT * FROM cappello";
 			//Connection c = DbCon.getConnection();
 			pst=this.con.prepareStatement(query);
 			rs=pst.executeQuery();
@@ -37,7 +37,7 @@ public class ProductDao {
 				row.setId(rs.getInt("id"));
 				row.setNome(rs.getString("nome"));
 				row.setCategoria(rs.getString("categoria"));
-				row.setPrezzo(rs.getDouble("costo"));
+				row.setPrezzo(rs.getDouble("prezzo"));
 				row.setImg(rs.getString("foto"));
 				row.setDescrizione(rs.getString("descrizione"));
 				row.setDisp(rs.getInt("disponibilita"));
@@ -82,7 +82,7 @@ public class ProductDao {
 		try {
 			if(cartList.size()>0) {
 				for(Cart item: cartList) {
-					query="SELECT costo FROM prodotto WHERE id=?";
+					query="SELECT prezzo FROM cappello WHERE id=?";
 					pst=this.con.prepareStatement(query);
 					pst.setInt(1,item.getId_prodotto());
 					rs=pst.executeQuery();
