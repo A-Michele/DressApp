@@ -5,7 +5,7 @@ INSERT INTO User VALUES(0,"francescoferrara@gmail.com","francesco12","Francesco"
 INSERT INTO User VALUES(0,"antonioauleta@gmail.com","antonio12","Antonio","Auleta",1);
 INSERT INTO User VALUES(0,"josegiammarino@gmail.com","jose12","Jose","Giammarino",1);
 INSERT INTO User VALUES(0,"mariorossi@gmail.com","mario12","Mario","Rossi",0);
-INSERT INTO User VALUES(0,"lucabianco@gmail.com","luca12","Luca","Bianco",0);
+INSERT INTO User VALUES (0,"lucabianco@gmail.com","luca12","Luca","Bianco",0);
 INSERT INTO User VALUES(0,"giuseppeverdi.com","giuseppe12","Giuseppe","Verdi",0);
 INSERT INTO User VALUES(0,"antonellafesta","antonella12","Antonella","Festa",0);
 INSERT INTO User VALUES(0,"andreaesposito","andrea12","Andrea","Esposito",0);
