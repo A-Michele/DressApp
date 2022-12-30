@@ -13,7 +13,8 @@ public class Ordine {
 		this.id = idStatico++;
 		this.data = data;
 		this.user = user;
-		this.isBuy = isBuy;
+		this.isBuy = isBuy
+				;
 	}
 
 	public Ordine() {
