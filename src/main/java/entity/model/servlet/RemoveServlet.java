@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import entity.connection.DbCon;
 import entity.dao.CartDao;
-import entity.dao.ProductDao;
+import entity.dao.CappelloDao;
 import entity.model.Cart;
 import entity.model.User;
 
@@ -28,7 +28,7 @@ public class RemoveServlet extends HttpServlet {
 			int p_id= Integer.parseInt(request.getParameter("p_id"));
 			User auth=(User) request.getSession().getAttribute("auth");
 			if(p_id>0) {
-				ProductDao pDao=new ProductDao(DbCon.getConnection());
+				CappelloDao pDao=new CappelloDao(DbCon.getConnection());
 				pDao.removeProduct(p_id);
 				response.sendRedirect("ProdottiAdmin.jsp");
 			}else {

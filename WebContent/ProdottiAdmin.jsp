@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@page import="entity.connection.DbCon"%>
 <%@page import="entity.model.*"%>
-<%@page import="entity.dao.ProductDao"%>
+<%@page import="entity.dao.CappelloDao"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 
@@ -17,7 +17,7 @@ if (auth != null) {
 	auth.setIsGuest(1);
 }
 
-ProductDao pd = new ProductDao(DbCon.getConnection());
+CappelloDao pd = new CappelloDao(DbCon.getConnection());
 List<Cappello> products = pd.getAllProducts();
 
 ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");

@@ -6,7 +6,7 @@ public class User {
 	private String cognome;
 	private String email;
 	private String password;
-	private boolean isAdmin;
+	private boolean is_Admin;
 	private static int idStatico=0;
 	
 		public User( String name, String cognome, String email, String password, boolean isAdmin) {
@@ -15,7 +15,7 @@ public class User {
 		this.cognome = cognome;
 		this.email = email;
 		this.password = password;
-		this.isAdmin = isAdmin;
+		this.is_Admin = isAdmin;
 	}
 
 	public User() {
@@ -24,11 +24,15 @@ public class User {
 		cognome=null;
 		email=null;
 		password=null;
-		isAdmin=false;
+		is_Admin=false;
 	}
 
 	public int getId() {
 		return id;
+	}
+	
+	public void setId(int x) {
+		id=x;
 	}
 
 	public String getName() {
@@ -64,16 +68,16 @@ public class User {
 	}
 
 	public boolean getIsAdmin() {
-		return isAdmin;
+		return is_Admin;
 	}
 
 	public void setIsAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
+		this.is_Admin = isAdmin;
 	}
 	
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", cognome=" + cognome + ", email=" + email + ", password="
-				+ password + ", isAdmin=" + isAdmin + "]";
+				+ password + ", isAdmin=" + is_Admin + "]";
 	}
 	
 }

@@ -1,27 +1,25 @@
 package entity.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import entity.connection.DbCon;
-import entity.model.Cart;
 import entity.model.Cappello;
 
-public class ProductDao {
+public class CappelloDao {
 	private Connection con;
 	private String query;
 	private PreparedStatement pst;
 	private ResultSet rs;
 	
-	public ProductDao(Connection con) {
+	public CappelloDao(Connection con) {
 		this.con=con;
 	}
 	
-	public ProductDao() {
+	public CappelloDao() {
 	}
 
 
@@ -37,10 +35,11 @@ public class ProductDao {
 				row.setId(rs.getInt("id"));
 				row.setNome(rs.getString("nome"));
 				row.setCategoria(rs.getString("categoria"));
-				row.setPrezzo(rs.getDouble("prezzo"));
-				row.setImg(rs.getString("foto"));
+				row.setPrezzo(rs.getFloat("prezzo"));
+				row.setFoto(rs.getString("foto"));
 				row.setDescrizione(rs.getString("descrizione"));
 				row.setDisp(rs.getInt("disponibilita"));
+				row.setDataUltimaModifica(rs.getDate("data_ultima_modifica"));
 				products.add(row);
 			}
 		}catch(Exception e) {
@@ -49,7 +48,7 @@ public class ProductDao {
 		return products;
 	}
 
-	public List<Cart> getCartProduct(ArrayList<Cart> cartList){
+	 /*public List<Cart> getCartProduct(ArrayList<Cart> cartList){
 		List<Cart> products=new ArrayList<Cart>();
 		try{
 			if(cartList.size()>0){
@@ -75,7 +74,7 @@ public class ProductDao {
 			//e.printStacktrace();
 		}
 		return products;
-	}
+	}  
 	
 	public double getTotal(ArrayList<Cart> cartList) {
 		double sum=0;
@@ -113,22 +112,28 @@ public class ProductDao {
 		}
 		return c;
 	}
+	 
+	 */
+	 
+	//------------------------------------
+	// Metodi CRUD:
 	
 	public ArrayList<Cappello> searchItems(String s){
         ArrayList<Cappello> products=new ArrayList<Cappello>();
         try {
-            query="SELECT * FROM prodotto WHERE nome LIKE '%"+s+"%'";
+            query="SELECT * FROM Cappello WHERE nome LIKE '%"+s+"%'";
             pst=this.con.prepareStatement(query);
             rs=pst.executeQuery();
             while(rs.next()) {
                 Cappello p =new Cappello();
                 p.setId(rs.getInt("id"));
                 p.setNome(rs.getString("nome"));
-                p.setCategoria(rs.getString("categoria"));
-                p.setPrezzo(rs.getDouble("costo"));
-                p.setImg(rs.getString("foto"));
                 p.setDescrizione(rs.getString("descrizione"));
+                p.setPrezzo(rs.getFloat("prezzo"));
+                p.setCategoria(rs.getString("categoria"));
+                p.setFoto(rs.getString("foto"));
                 p.setDisp(rs.getInt("disponibilita"));
+                p.setDataUltimaModifica(rs.getDate("data_ultima_modifica"));
                 products.add(p);
             }
         }catch(Exception e) {
@@ -138,7 +143,7 @@ public class ProductDao {
     }
 	
 	public void removeProduct(int p_id) {
-		query="DELETE FROM prodotto WHERE id=" + p_id;
+		query="DELETE FROM Cappello WHERE id=" + p_id;
 			 try {
 				pst=this.con.prepareStatement(query);
 				pst.execute();
@@ -149,37 +154,44 @@ public class ProductDao {
 			 
 	}
 	
-	public void insertProduct(String nome,String descrizione,double costo,String categoria,String foto) throws SQLException {
+	public void insertProduct(String nome,String descrizione,float costo,String categoria,String foto, int disp, Date data) {
+		Cappello p= new Cappello(); // Creo il cappello per fargli generare automaticamente l'id corretto da inserire nella query
         try {
-            query="INSERT INTO prodotto(nome,descrizione,costo,categoria,foto) VALUES(?,?,?,?,?)";
+            query="INSERT INTO Cappello(id,nome,descrizione,prezzo,categoria,foto,disponibilita,data_ultima_modifica)"
+            		+ " VALUES(?,?,?,?,?,?,?,?)";
             pst=this.con.prepareStatement(query);
-            pst.setString(1, nome);
-            pst.setString(2, descrizione);
-            pst.setDouble(3, costo);
-            pst.setString(4, categoria);
-            pst.setString(5, foto);
+            pst.setInt(1, p.getId());
+            pst.setString(2, nome);
+            pst.setString(3, descrizione);
+            pst.setDouble(4, costo);
+            pst.setString(5, categoria);
+            pst.setString(6, foto);
+            pst.setInt(7, disp);
+            pst.setDate(8, data);
             pst.executeUpdate();
-        }catch(Exception e){
-            e.printStackTrace();
         }
-    }
+        catch(Exception e){
+            e.printStackTrace();
+            }
+	}
 
 	public Cappello retriveProductById(int p_id) {
 		Cappello p=new Cappello();
 		try {
 
-            query="SELECT * from prodotto where id=?";
+            query="SELECT * from Cappello where id=?";
             pst=this.con.prepareStatement(query);
             pst.setInt(1, p_id);
             rs=pst.executeQuery();
             while(rs.next()) {
             	p.setId(rs.getInt("id"));
             	p.setNome(rs.getString("nome"));
-            	p.setCategoria(rs.getString("categoria"));
-            	p.setPrezzo(rs.getDouble("costo"));
-            	p.setImg(rs.getString("foto"));
             	p.setDescrizione(rs.getString("descrizione"));
+            	p.setPrezzo(rs.getFloat("prezzo"));
+            	p.setCategoria(rs.getString("categoria"));
+            	p.setFoto(rs.getString("foto"));
             	p.setDisp(rs.getInt("disponibilita"));
+            	p.setDataUltimaModifica(rs.getDate("data_ultima_modifica"));
             }
             return p;
 			
@@ -189,18 +201,19 @@ public class ProductDao {
 		return null;
 	}
 
-	public boolean updateProdotto(int id, String nome, String desc, double costo, String categoria, String foto,
-			int dispo) {
+	public boolean updateProdotto(int id, String nome, String desc, float costo, String categoria, String foto,
+			int dispo, Date data) {
 		try {
-            query="UPDATE Prodotto SET nome=?, descrizione=?, costo=?, categoria=?,foto=?,disponibilita=? WHERE id=?";
+            query="UPDATE Cappello SET nome=?, descrizione=?, prezzo=?, categoria=?,foto=?,disponibilita=?,data_ultima_modifica=? WHERE id=?";
             pst=this.con.prepareStatement(query);
             pst.setString(1, nome);
             pst.setString(2, desc);
-            pst.setDouble(3, costo);
+            pst.setFloat(3, costo);
             pst.setString(4, categoria);
             pst.setString(5, foto);
             pst.setInt(6, dispo);
-            pst.setInt(7, id);
+            pst.setDate(7, data);
+            pst.setInt(8, id);
             pst.executeUpdate();
             return true;
         }catch(Exception e){

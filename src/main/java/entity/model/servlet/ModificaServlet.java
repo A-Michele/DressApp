@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entity.connection.DbCon;
-import entity.dao.ProductDao;
+import entity.dao.CappelloDao;
 
 /**
  * Servlet implementation class ModificaServlet
@@ -46,7 +46,7 @@ public class ModificaServlet extends HttpServlet {
 		String foto=request.getParameter("foto");
 		int dispo=Integer.parseInt(request.getParameter("disp"));
 		try {
-			ProductDao pdao=new ProductDao(DbCon.getConnection());
+			CappelloDao pdao=new CappelloDao(DbCon.getConnection());
 			boolean b=pdao.updateProdotto(id,nome,desc,costo,categoria,foto,dispo);
 			if(b=true) {
 				response.sendRedirect("ProdottiAdmin.jsp");

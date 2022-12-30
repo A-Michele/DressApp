@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entity.connection.DbCon;
-import entity.dao.ProductDao;
+import entity.dao.CappelloDao;
 import entity.model.Cappello;
 import entity.model.User;
 
@@ -28,7 +28,7 @@ public class AllOrdersServlet extends HttpServlet {
 		boolean result;
 		try (PrintWriter out=response.getWriter()){
 			User auth=(User) request .getSession().getAttribute("auth");
-			ProductDao pd = new ProductDao(DbCon.getConnection());
+			CappelloDao pd = new CappelloDao(DbCon.getConnection());
 			List<Cappello> products = pd.getAllProducts();
 			request.setAttribute("products",products);
 			RequestDispatcher dispatcher  = request.getRequestDispatcher("show-products");

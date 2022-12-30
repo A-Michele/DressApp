@@ -18,10 +18,10 @@ if (auth != null) {
 	auth.setIsGuest(1);
 }
 
-ProductDao pd = new ProductDao(DbCon.getConnection());
+CappelloDao pd = new CappelloDao(DbCon.getConnection());
 List<Cappello> products = pd.getAllProducts();
 
-ProductDao pDao = new ProductDao(DbCon.getConnection());
+CappelloDao pDao = new CappelloDao(DbCon.getConnection());
 	CartDao cDao=new CartDao(DbCon.getConnection());
 	ArrayList<Cart> cart_list = cDao.retriveOrders();
 	ArrayList<Cart> carrello=new ArrayList<Cart>();

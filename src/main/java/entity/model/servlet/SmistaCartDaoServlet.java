@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import entity.connection.DbCon;
 import entity.dao.CartDao;
-import entity.dao.ProductDao;
+import entity.dao.CappelloDao;
 import entity.model.*;
 
 /**
@@ -37,7 +37,7 @@ public class SmistaCartDaoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		User auth=(User) request.getSession().getAttribute("auth");
-		ProductDao pDao;
+		CappelloDao pDao;
 		try {
 			if (auth != null) {
 				request.setAttribute("auth", auth);
@@ -45,7 +45,7 @@ public class SmistaCartDaoServlet extends HttpServlet {
 				auth=new User();
 				auth.setIsGuest(1);
 			}
-			pDao = new ProductDao(DbCon.getConnection());
+			pDao = new CappelloDao(DbCon.getConnection());
 			CartDao cDao=new CartDao(DbCon.getConnection());
 			ArrayList<Cart> cart_list = cDao.retrivePerUser(auth.getId());
 			ArrayList<Cart> carrello=new ArrayList<Cart>();

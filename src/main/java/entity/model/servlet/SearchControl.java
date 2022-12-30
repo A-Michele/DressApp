@@ -24,7 +24,7 @@ public class SearchControl extends HttpServlet {
 		try(PrintWriter out=response.getWriter()){
 			String s=request.getParameter("search");	
 			try {
-				ProductDao pdao=new ProductDao(DbCon.getConnection());
+				CappelloDao pdao=new CappelloDao(DbCon.getConnection());
 				ArrayList<Cappello> products=pdao.searchItems(s);
 	
 				request.setAttribute("search-product",products);

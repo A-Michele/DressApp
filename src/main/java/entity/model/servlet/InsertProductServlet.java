@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entity.connection.DbCon;
-import entity.dao.ProductDao;
+import entity.dao.CappelloDao;
 import entity.dao.UserDao;
 import entity.model.User;
 
@@ -25,7 +25,7 @@ public class InsertProductServlet extends HttpServlet {
         String categoria=request.getParameter("cat");
         String foto=request.getParameter("nomeP");
         try {
-            ProductDao pdao=new ProductDao(DbCon.getConnection());
+            CappelloDao pdao=new CappelloDao(DbCon.getConnection());
             pdao.insertProduct(nome,descrizione,costo, categoria,foto);
             response.sendRedirect("show-products");
         }catch (SQLException e) {

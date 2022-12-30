@@ -18,7 +18,7 @@ if (auth != null) {
 	auth=new User();
 	auth.setIsGuest(1);
 }
-ProductDao pDao = new ProductDao(DbCon.getConnection());
+CappelloDao pDao = new CappelloDao(DbCon.getConnection());
 CartDao cDao=new CartDao(DbCon.getConnection());
 ArrayList<Cart> cart_list = cDao.retrivePerUser(auth.getId());
 ArrayList<Cart> carrello=new ArrayList<Cart>();

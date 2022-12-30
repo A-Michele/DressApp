@@ -56,6 +56,10 @@ public class Cappello {
 	public int getId() {
 		return id;
 	}
+	
+	public void setId(int x) {
+		id=x;
+	}
 
 	public String getNome() {
 		return nome;

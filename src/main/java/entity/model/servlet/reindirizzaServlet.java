@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entity.connection.DbCon;
-import entity.dao.ProductDao;
+import entity.dao.CappelloDao;
 import entity.model.Cappello;
 
 @WebServlet("/reindirizzaServlet")
@@ -25,7 +25,7 @@ public class reindirizzaServlet extends HttpServlet {
 		System.out.println("id"+x);
 		
 		try {
-			ProductDao pdao=new ProductDao(DbCon.getConnection());
+			CappelloDao pdao=new CappelloDao(DbCon.getConnection());
 			Cappello p=pdao.retriveProductById(x);
 			if(p!=null) {
 				request.setAttribute("item",p);

@@ -7,23 +7,23 @@
 <%@page import="java.util.ArrayList" %>
 	<%
 	DecimalFormat dcf = new DecimalFormat("#.##");
-	request.setAttribute("dcf", dcf);
-	
-	User auth =(User) request.getSession().getAttribute("auth");
-	if(auth!=null){
-		request.setAttribute("auth",auth);
-	}else{
-		auth=new User();
-		auth.setIsGuest(1);
-	}
-	ProductDao pDao = new ProductDao(DbCon.getConnection());
-	CartDao cDao=new CartDao(DbCon.getConnection());
-	ArrayList<Cart> cart_list = cDao.retriveOrdersPerUser(auth.getId());
-	ArrayList<Cart> carrello=new ArrayList<Cart>();
-	for(Cart c:cart_list){
-		Cart c1=pDao.completeCart(c);
-		carrello.add(c1);
-	}
+		request.setAttribute("dcf", dcf);
+		
+		User auth =(User) request.getSession().getAttribute("auth");
+		if(auth!=null){
+			request.setAttribute("auth",auth);
+		}else{
+			auth=new User();
+			auth.setIsGuest(1);
+		}
+		CappelloDao pDao = new CappelloDao(DbCon.getConnection());
+		CartDao cDao=new CartDao(DbCon.getConnection());
+		ArrayList<Cart> cart_list = cDao.retriveOrdersPerUser(auth.getId());
+		ArrayList<Cart> carrello=new ArrayList<Cart>();
+		for(Cart c:cart_list){
+			Cart c1=pDao.completeCart(c);
+			carrello.add(c1);
+		}
 	%>
 <!DOCTYPE html>
 <html>
