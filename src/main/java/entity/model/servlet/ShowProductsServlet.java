@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import entity.connection.DbCon;
 import entity.dao.ProductDao;
-import entity.model.Product;
+import entity.model.Cappello;
 import entity.model.User;
 
 
@@ -28,7 +28,7 @@ public class ShowProductsServlet extends HttpServlet {
 		try (PrintWriter out=response.getWriter()){
 			User auth=(User) request .getSession().getAttribute("auth");
 			ProductDao pd = new ProductDao(DbCon.getConnection());
-			List<Product> products = pd.getAllProducts();
+			List<Cappello> products = pd.getAllProducts();
 			request.setAttribute("products",products);
 			RequestDispatcher dispatcher  = request.getRequestDispatcher("index.jsp");
 			dispatcher.forward(request, response);

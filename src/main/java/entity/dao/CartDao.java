@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import entity.model.Cart;
-import entity.model.Product;
+import entity.model.Cappello;
 import entity.model.User;
 
 public class CartDao {

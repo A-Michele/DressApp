@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import entity.connection.DbCon;
 import entity.dao.*;
-import entity.model.Product;
+import entity.model.Cappello;
 
 @WebServlet("/search-bar")
 public class SearchControl extends HttpServlet {
@@ -25,7 +25,7 @@ public class SearchControl extends HttpServlet {
 			String s=request.getParameter("search");	
 			try {
 				ProductDao pdao=new ProductDao(DbCon.getConnection());
-				ArrayList<Product> products=pdao.searchItems(s);
+				ArrayList<Cappello> products=pdao.searchItems(s);
 	
 				request.setAttribute("search-product",products);
 				RequestDispatcher dispatcher  = request.getRequestDispatcher("index.jsp");
