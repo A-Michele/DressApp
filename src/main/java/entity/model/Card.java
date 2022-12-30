@@ -2,7 +2,7 @@ package entity.model;
 
 public class Card {
 	private int id;
-	private static int idStatico=0;
+	private static int idStatico= 0;
 	private String  proprietario;
 	private String numeroCarta;
 	private String dataScadenza;

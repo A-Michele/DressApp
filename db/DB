@@ -26,7 +26,7 @@ CREATE TABLE Card(
 	id int NOT NULL AUTO_INCREMENT,
 	proprietario VARCHAR(50),
 	numero_carta VARCHAR(16),
-	data_scadenza varchar(8),
+	data_scadenza varchar(8), 
 	cvv INT,
 	user INT,
 	PRIMARY KEY(id),

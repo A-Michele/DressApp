@@ -1,6 +1,6 @@
 package entity.model;
 
-public class DettaglioOrdine {
+public class DettaglioOrdine{
 	private int cappello;
 	private int quantita;
 	private int ordine;
