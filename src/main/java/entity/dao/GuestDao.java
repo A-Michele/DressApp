@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import entity.model.Product;
+import entity.model.Cappello;
 
 public class GuestDao {
 	private Connection con;

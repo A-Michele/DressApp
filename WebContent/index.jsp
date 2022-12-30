@@ -30,9 +30,9 @@ if (auth != null) {
 ProductDao pd = new ProductDao(DbCon.getConnection());
 List<Product> products = pd.getAllProducts();
 */
-List<Product> products = (List<Product>) request.getAttribute("products");
+List<Cappello> products = (List<Cappello>) request.getAttribute("products");
 
-ArrayList<Product> product_list = (ArrayList<Product>) request.getAttribute("search-product");
+ArrayList<Cappello> product_list = (ArrayList<Cappello>) request.getAttribute("search-product");
 %>
 
 <!DOCTYPE html>
@@ -57,32 +57,36 @@ ArrayList<Product> product_list = (ArrayList<Product>) request.getAttribute("sea
 		
 		
 		<div class="row">
-		<%if(product_list!=null){			
+		<%
+		if(product_list!=null){			
 				if(product_list.size()==0){
-					%>
+		%>
 					<div class="container text-center">
 							<br><br><h3>Nessun prodotto trovato...</h3>
 					</div>
 					<%
-					
-				}
-				else{
-					for (Product p : product_list) {
+					}
+							else{
+								for (Cappello p : product_list) {
 					%>
 					<div class="col-md-3 my-3">
 						<div class="card w-100" style="width: 18rem;">
-							<img src="product-images/<%=p.getImg() %>" class="card-img-top" alt="...">
+							<img src="product-images/<%=p.getImg()%>" class="card-img-top" alt="...">
 							<div class="card-body">
-								<h5 class="card-title"><%=p.getNome() %></h5>
-								<h6 class="price">Prezzo: <%=p.getPrezzo() %>$</h6>
-								<h6 class="category">Categoria: <%=p.getCategoria() %></h6>
-								<h6 class="description">Dettagli: <%=p.getDescrizione() %></h6>
+								<h5 class="card-title"><%=p.getNome()%></h5>
+								<h6 class="price">Prezzo: <%=p.getPrezzo()%>$</h6>
+								<h6 class="category">Categoria: <%=p.getCategoria()%></h6>
+								<h6 class="description">Dettagli: <%=p.getDescrizione()%></h6>
 								<div class="mt-3 d-flex float-right justify-content-between">
 									<form action="add-to-cart" method="get">
-                                	<%if(auth!=null){ %>
-                                	<input type="hidden" name="u_id" value="<%= auth.getId() %>">
-                                	<%} %>
-                                	<input type="hidden" name="p_id" value="<%= p.getId() %>">
+                                	<%
+                                	if(auth!=null){
+                                	%>
+                                	<input type="hidden" name="u_id" value="<%=auth.getId()%>">
+                                	<%
+                                	}
+                                	%>
+                                	<input type="hidden" name="p_id" value="<%=p.getId()%>">
                                 	<input type="submit" class="btn btn-primary" value="Add to cart">
                             </form>
 								</div>
@@ -91,10 +95,10 @@ ArrayList<Product> product_list = (ArrayList<Product>) request.getAttribute("sea
 					</div>
 					<%
 					}
-				}
-			}else{
-				if(products!=null){
-				for (Product p : products) {
+							}
+						}else{
+							if(products!=null){
+							for (Cappello p : products) {
 					%>
 					<div class="col-md-3 my-3">
 						<div class="card w-100" style="width: 18rem;">
