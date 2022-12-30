@@ -9,6 +9,7 @@ public class Card {
 	private int cvv;
 	private int user;
 	
+	
 	public Card(String proprietario, String numeroCarta, String dataScadenza, int cvv, int user) {
 		super();
 		this.id=idStatico++;
@@ -65,6 +66,10 @@ public class Card {
 
 	public int getId() {
 		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	@Override
