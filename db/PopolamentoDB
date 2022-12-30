@@ -1,0 +1,61 @@
+SET SQL_SAFE_UPDATES = 0;
+
+INSERT INTO User VALUES(0,"alaiamichele@gmail.com","michele12","Michele","Alaia",1);
+INSERT INTO User VALUES(0,"francescoferrara@gmail.com","francesco12","Francesco","Ferrara",1);
+INSERT INTO User VALUES(0,"antonioauleta@gmail.com","antonio12","Antonio","Auleta",1);
+INSERT INTO User VALUES(0,"josegiammarino@gmail.com","jose12","Jose","Giammarino",1);
+INSERT INTO User VALUES(0,"mariorossi@gmail.com","mario12","Mario","Rossi",0);
+INSERT INTO User VALUES(0,"lucabianco@gmail.com","luca12","Luca","Bianco",0);
+INSERT INTO User VALUES(0,"giuseppeverdi.com","giuseppe12","Giuseppe","Verdi",0);
+INSERT INTO User VALUES(0,"antonellafesta","antonella12","Antonella","Festa",0);
+INSERT INTO User VALUES(0,"andreaesposito","andrea12","Andrea","Esposito",0);
+
+INSERT INTO Cappello VALUES(0,"New Era","KAPPE 940 MLB LEAGE BASIC - Cappellino",17.99,"Streetwear","newera.jpg",20,current_date());
+INSERT INTO Cappello VALUES(0,"Nike U","Nk H86 cap Essential Swsh, Cappellino Unisex Adulto",17.00,"Streetwear","nikeu.jpg",30,current_date());
+INSERT INTO Cappello VALUES(0,"Nike Futura","FUTURA WASH UNISEX - Cappellino",14.99,"Streetwear","nikefutura.jpg",10,current_date());
+INSERT INTO Cappello VALUES(0,"Adidas Original","UNISEX - Cappellino",11.99,"Streetwear","adidasoriginal.jpg",15,current_date());
+INSERT INTO Cappello VALUES(0,"Adidas Baseball","Adidas Cappellino Baseball 3-Stripes Twill Black",11.99,"Streetwear","adidasbaseball.jpg",5,current_date());
+INSERT INTO Cappello VALUES(0,"Carhartt WIP","WATCH HAT UNISEX",19.99,"Invernale","carharttwip.jpg",30,current_date());
+INSERT INTO Cappello VALUES(0,"The North Face LOGO","LOGO BOX CUFFED BEANIE ",27.99,"Invernale","northfacelogo.jpg",5,current_date());
+INSERT INTO Cappello VALUES(0,"Kappa HOPPA","HOPPA UNISEX",11.99,"Invernale","kappahoppa.jpg",40,current_date());
+INSERT INTO Cappello VALUES(0,"Tommy Jeans","SPORT BEANIE UNISEX",21.99,"Invernale","tommy.jpg",5,current_date());
+INSERT INTO Cappello VALUES(0,"Champion","BEANIE UNISEX",9.99,"Invernale","tommy.jpg",50,current_date());
+INSERT INTO Cappello VALUES(0,"Calvin Klein CLASSIC","CLASSIC NO FOLD BEANIE UNISEX",34.99,"Invernale","ck.jpg",15,current_date());
+INSERT INTO Cappello VALUES(0,"Nike Performance","AERO ADVANTAGE VISOR",19.99,"Sport","nikeperformance.jpg",100,current_date());
+INSERT INTO Cappello VALUES(0,"Under Armour","ISOCHILL LAUNCH",11.99,"Sport","nikeperformance.jpg",100,current_date());
+INSERT INTO Cappello VALUES(0,"The North Face SUN","SUN STASH HAT UNISEX",17.99,"Vintage","northfacevintage.jpg",40,current_date());
+INSERT INTO Cappello VALUES(0,"Gucci","Cappello da baseball con doppia visiera adidas x Gucci",550.00,"Luxory","gucci.jpg",1,current_date());
+INSERT INTO Cappello VALUES(0,"Off-White","Berretto nero con logo Off-White bianco sul davanti",99.99,"Luxory","offwhite.jpg",3,current_date());
+INSERT INTO Cappello VALUES(0,"FENDI KIDS","Baby - Berretto in cotone e cashmere FF",149.99,"Luxory","fendikids.jpg",10,current_date());
+INSERT INTO Cappello VALUES(0,"MOSCHINO","BABY HAT UNISEX",25.99,"Luxory","moschinobaby.jpg",50,current_date());
+INSERT INTO Cappello VALUES(0,"Burberry","Cappello da pescatore in cotone tecnico con motivo Vintage check",290.00,"Luxory","burberry.jpg",5,current_date());
+INSERT INTO Cappello VALUES(0,"Givenchy","Berretto di tela con corna",900.00,"Luxory","givenchy.jpg",1,current_date());
+INSERT INTO Cappello VALUES(0,"Relax Days","Cappello porta bibite",19.99,"Alcolisti","portabirra.jpg",200,current_date());
+
+INSERT INTO Card VALUES(0,"Michele Alaia",4041012257867950,"10/2028",618,1);
+INSERT INTO Card VALUES(0,"Francesco Ferrara",4030283157649078,"12/2027",459,2);
+INSERT INTO Card VALUES(0,"Antonio Auleta",4598191108619716,"08/2030",764,3);
+INSERT INTO Card VALUES(0,"Josè Giammarino",4056013412098319,"10/2024",959,4);
+INSERT INTO Card VALUES(0,"Josè Giammarino",4598227360598527,"12/2028",574,4);
+INSERT INTO Card VALUES(0,"Mario Rossi",4035935938867122,"03/2023",463,5);
+INSERT INTO Card VALUES(0,"Mario Rossi",4273412906032924,"03/2028",461,5);
+INSERT INTO Card VALUES(0,"Luca Bianco",4222212906032924,"04/2028",401,6);
+INSERT INTO Card VALUES(0,"Antonella Festa",4222212906039999,"01/2028",520,8);
+
+INSERT INTO Ordine VALUES(0,"2022-05-20",5,1);
+INSERT INTO Ordine VALUES(0,"2022-05-30",5,1);
+INSERT INTO Ordine VALUES(0,"2022-08-01",5,1);
+INSERT INTO Ordine VALUES(0,"2022-11-11",5,1);
+INSERT INTO Ordine VALUES(0,"2021-12-31",6,1);
+INSERT INTO Ordine VALUES(0,"2022-04-02",6,1);
+INSERT INTO Ordine VALUES(0,"2022-09-24",8,1);
+
+INSERT INTO DettaglioOrdine VALUES(1,1,2);
+INSERT INTO DettaglioOrdine VALUES(2,1,1);
+INSERT INTO DettaglioOrdine VALUES(3,1,3);
+INSERT INTO DettaglioOrdine VALUES(5,2,1);
+INSERT INTO DettaglioOrdine VALUES(6,3,2);
+INSERT INTO DettaglioOrdine VALUES(7,4,1);
+INSERT INTO DettaglioOrdine VALUES(8,5,1);
+INSERT INTO DettaglioOrdine VALUES(10,6,2);
+INSERT INTO DettaglioOrdine VALUES(11,7,3);
