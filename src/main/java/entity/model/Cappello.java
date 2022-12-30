@@ -15,7 +15,7 @@ public class Cappello {
 	private Date data_ultima_modifica;
 	
 
-	public Cappello(String nome, String cateogria, float prezzo, String foto, String descrizione, int disp, Date data) {
+	public Cappello(String nome, String cateogria, float prezzo, String foto, String descrizione, int disp) {
 		id=idStatico++;
 		this.nome = nome;
 		this.categoria = cateogria;
@@ -23,7 +23,7 @@ public class Cappello {
 		this.foto=foto;
 		this.descrizione=descrizione;
 		this.disp=disp;
-		data_ultima_modifica=data;
+		data_ultima_modifica=new Date(System.currentTimeMillis());
 	}
 
 	public Cappello() {

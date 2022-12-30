@@ -101,7 +101,7 @@ function validatePass(valPass, mx, my){
 							%>	
 					</div>
 					<p>
-					Prima volta su Eboh?<a href="Registrazione.jsp"> Registrati.</a>
+					Prima volta su DressApp?<a href="Registrazione.jsp"> Registrati.</a>
 					</p>
 				
 					<div class="text-center">

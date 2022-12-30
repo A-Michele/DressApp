@@ -45,8 +45,7 @@ public class DettaglioOrdineDAO {
 	}
 	
 	public void insertDettaglioOrdine(int cappelloId,int quantita, int ordineId) {
-		DettaglioOrdine dettOrder= new DettaglioOrdine(); // Creo la DettaglioOrdine per fargli generare automaticamente l'id corretto da inserire nella query
-        try {
+		try {
             query="INSERT INTO DettaglioOrdine(cappello,ordine,quantita)"
             		+ " VALUES(?,?,?)";
             pst=this.con.prepareStatement(query);

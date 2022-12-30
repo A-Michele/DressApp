@@ -8,7 +8,6 @@
 		request.setAttribute("auth",auth);
 	}else{
 		auth=new User();
-		auth.setIsGuest(1);
 	}
 	%>
 <!DOCTYPE html>
