@@ -36,7 +36,7 @@ ProductDao pDao = new ProductDao(DbCon.getConnection());
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ORDERS</title>
+<title>ORDERS MODIFICATO DA JOSE</title>
 <%@ include file="includes/header.jsp"%>
 
        <HEAD>
