@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import entity.connection.DbCon;
 import entity.dao.ProductDao;
-import entity.model.Product;
+import entity.model.Cappello;
 
 @WebServlet("/reindirizzaServlet")
 public class reindirizzaServlet extends HttpServlet {
@@ -26,7 +26,7 @@ public class reindirizzaServlet extends HttpServlet {
 		
 		try {
 			ProductDao pdao=new ProductDao(DbCon.getConnection());
-			Product p=pdao.retriveProductById(x);
+			Cappello p=pdao.retriveProductById(x);
 			if(p!=null) {
 				request.setAttribute("item",p);
 				RequestDispatcher dispatcher  = request.getRequestDispatcher("modificaProdotto.jsp");

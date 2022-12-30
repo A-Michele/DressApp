@@ -18,7 +18,7 @@ if (auth != null) {
 }
 
 ProductDao pd = new ProductDao(DbCon.getConnection());
-List<Product> products = pd.getAllProducts();
+List<Cappello> products = pd.getAllProducts();
 
 ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
 if (cart_list != null) {
@@ -43,16 +43,20 @@ if (cart_list != null) {
 		<br>
 		<div class="container text-center">
 	<form action="reindirizzaServlet" method="Post">
-                                <%if(auth!=null){ %>
-                                <input type="hidden" name="u_id" value="<%= auth.getId() %>">
-                                <%} %>
+                                <%
+                                if(auth!=null){
+                                %>
+                                <input type="hidden" name="u_id" value="<%=auth.getId()%>">
+                                <%
+                                }
+                                %>
                                 <input type="submit" class="btn btn-primary" value="Inserisci Un Prodotto">
                             	</form>
                             	</div>
 		<div class="row">
 			<%
 			if (!products.isEmpty()) {
-				for (Product p : products) {
+					for (Cappello p : products) {
 			%>
 			<div class="col-md-3 my-3">
 				<div class="card w-100" style="width: 18rem;">

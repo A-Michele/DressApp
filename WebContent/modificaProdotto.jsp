@@ -3,18 +3,17 @@
     
     <%@page import="entity.model.*"%>
     <%
-User auth = (User) request.getSession().getAttribute("auth");
-if (auth != null) {
-	request.setAttribute("auth", auth);
-}else{
-	auth=new User();
-	auth.setIsGuest(1);
-}
+    User auth = (User) request.getSession().getAttribute("auth");
+    if (auth != null) {
+    	request.setAttribute("auth", auth);
+    }else{
+    	auth=new User();
+    	auth.setIsGuest(1);
+    }
 
-Product p=(Product)request.getAttribute("item");
-System.out.println(p.getNome());
-
-%>
+    Cappello p=(Cappello)request.getAttribute("item");
+    System.out.println(p.getNome());
+    %>
 <!DOCTYPE html>
 <html>
 <head>

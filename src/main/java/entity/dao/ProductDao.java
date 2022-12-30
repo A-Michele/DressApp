@@ -9,7 +9,7 @@ import java.util.List;
 
 import entity.connection.DbCon;
 import entity.model.Cart;
-import entity.model.Product;
+import entity.model.Cappello;
 
 public class ProductDao {
 	private Connection con;
@@ -25,15 +25,15 @@ public class ProductDao {
 	}
 
 
-	public List<Product> getAllProducts(){
-		List<Product> products=new ArrayList<Product>();
+	public List<Cappello> getAllProducts(){
+		List<Cappello> products=new ArrayList<Cappello>();
 		try {
 			query="SELECT * FROM cappello";
 			//Connection c = DbCon.getConnection();
 			pst=this.con.prepareStatement(query);
 			rs=pst.executeQuery();
 			while(rs.next()) {
-				Product row=new Product();
+				Cappello row=new Cappello();
 				row.setId(rs.getInt("id"));
 				row.setNome(rs.getString("nome"));
 				row.setCategoria(rs.getString("categoria"));
@@ -114,14 +114,14 @@ public class ProductDao {
 		return c;
 	}
 	
-	public ArrayList<Product> searchItems(String s){
-        ArrayList<Product> products=new ArrayList<Product>();
+	public ArrayList<Cappello> searchItems(String s){
+        ArrayList<Cappello> products=new ArrayList<Cappello>();
         try {
             query="SELECT * FROM prodotto WHERE nome LIKE '%"+s+"%'";
             pst=this.con.prepareStatement(query);
             rs=pst.executeQuery();
             while(rs.next()) {
-                Product p =new Product();
+                Cappello p =new Cappello();
                 p.setId(rs.getInt("id"));
                 p.setNome(rs.getString("nome"));
                 p.setCategoria(rs.getString("categoria"));
@@ -164,8 +164,8 @@ public class ProductDao {
         }
     }
 
-	public Product retriveProductById(int p_id) {
-		Product p=new Product();
+	public Cappello retriveProductById(int p_id) {
+		Cappello p=new Cappello();
 		try {
 
             query="SELECT * from prodotto where id=?";

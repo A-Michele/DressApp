@@ -19,7 +19,7 @@ if (auth != null) {
 }
 
 ProductDao pd = new ProductDao(DbCon.getConnection());
-List<Product> products = pd.getAllProducts();
+List<Cappello> products = pd.getAllProducts();
 
 ProductDao pDao = new ProductDao(DbCon.getConnection());
 	CartDao cDao=new CartDao(DbCon.getConnection());
@@ -29,7 +29,7 @@ ProductDao pDao = new ProductDao(DbCon.getConnection());
 		Cart c1=pDao.completeCart(c);
 		carrello.add(c1);
 	}
-	%>
+%>
 
 
 <!DOCTYPE html>

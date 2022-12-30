@@ -1,27 +1,40 @@
 package entity.model;
 
-public class Product {
+import java.sql.Date;
+
+public class Cappello {
+	
 	private int id;
+	private static int idStatico=0;
 	private String nome;
 	private String categoria;
-	private double prezzo;
-	private String img;
+	private float prezzo;
+	private String foto;
 	private String descrizione;
 	private int disp;
+	private Date data_ultima_modifica;
 	
 
-	public Product(int id, String nome, String cateogria, double prezzo, String img, String descrizione, int disp) {
-		super();
-		this.id = id;
+	public Cappello(String nome, String cateogria, float prezzo, String foto, String descrizione, int disp, Date data) {
+		id=idStatico++;
 		this.nome = nome;
 		this.categoria = cateogria;
 		this.prezzo = prezzo;
-		this.img = img;
+		this.foto=foto;
 		this.descrizione=descrizione;
 		this.disp=disp;
+		data_ultima_modifica=data;
 	}
 
-	public Product() {
+	public Cappello() {
+		id=idStatico++;
+		this.nome = null;
+		this.categoria = null;
+		this.prezzo = 0;
+		this.foto=null;
+		this.descrizione=null;
+		this.disp=0;
+		data_ultima_modifica=null;
 	}
 
 	public int getDisp() {
@@ -44,10 +57,6 @@ public class Product {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public String getNome() {
 		return nome;
 	}
@@ -68,21 +77,29 @@ public class Product {
 		return prezzo;
 	}
 
-	public void setPrezzo(double string) {
-		this.prezzo = string;
+	public void setPrezzo(float prezzo) {
+		this.prezzo = prezzo;
 	}
 
-	public String getImg() {
-		return img;
+	public String getFoto() {
+		return foto;
 	}
 
-	public void setImg(String img) {
-		this.img = img;
+	public void setFoto(String img) {
+		this.foto = img;
+	}
+	
+	public Date getDataUltimaModifica() {
+		return data_ultima_modifica;
+	}
+	
+	public void setDataUltimaModifica(Date data) {
+		data_ultima_modifica=data;
 	}
 
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", nome=" + nome + ", categoria=" + categoria + ", prezzo=" + prezzo + ", img="
-				+ img + ", descrizione=" + descrizione + ", disp=" + disp + "]";
+				+ foto + ", descrizione=" + descrizione + ", disp=" + disp + ", data ultima modifica="+data_ultima_modifica+"]";
 	}
 }
