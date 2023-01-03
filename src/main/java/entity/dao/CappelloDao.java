@@ -154,7 +154,7 @@ public class CappelloDao {
 			 
 	}
 	
-	public void insertProduct(String nome,String descrizione,float costo,String categoria,String foto, int disp, Date data) {
+	public void insertProduct(String nome,String descrizione,float costo,String categoria,String foto, int disp) {
 		Cappello p= new Cappello(); // Creo il cappello per fargli generare automaticamente l'id corretto da inserire nella query
         try {
             query="INSERT INTO Cappello(id,nome,descrizione,prezzo,categoria,foto,disponibilita,data_ultima_modifica)"
@@ -167,7 +167,7 @@ public class CappelloDao {
             pst.setString(5, categoria);
             pst.setString(6, foto);
             pst.setInt(7, disp);
-            pst.setDate(8, data);
+            pst.setDate(8, new Date(System.currentTimeMillis()));
             pst.executeUpdate();
         }
         catch(Exception e){

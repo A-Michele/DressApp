@@ -7,21 +7,19 @@
 <%@page import="java.util.List"%>
 <%
 User auth = (User) request.getSession().getAttribute("auth");
-Guest guest=(Guest) request.getSession().getAttribute("guest");
 //System.out.println("index:"+guest);
 
 if (auth != null) {
 	request.setAttribute("auth", auth);
 }else{
-	auth=new User();
-	auth.setIsGuest(1);
+	auth=null;
+	
 	/*
 	if(guest==null){
 		GuestDao gdao=new GuestDao(DbCon.getConnection());
 		gdao.addGuest();
 	}
 	*/
-	request.setAttribute("guest",guest);
 	//auth=new User();
 	//auth.setIsGuest(1);
 }
@@ -39,7 +37,7 @@ ArrayList<Cappello> product_list = (ArrayList<Cappello>) request.getAttribute("s
 <html>
 <head>
 <meta charset="UTF-8">
-<title>INDEX</title>
+<title>HOME</title>
 <%@ include file="includes/header.jsp"%>
 </head>
 <body>
@@ -71,7 +69,7 @@ ArrayList<Cappello> product_list = (ArrayList<Cappello>) request.getAttribute("s
 					%>
 					<div class="col-md-3 my-3">
 						<div class="card w-100" style="width: 18rem;">
-							<img src="product-images/<%=p.getImg()%>" class="card-img-top" alt="...">
+							<img src="product-images/<%=p.getFoto()%>" class="card-img-top" alt="...">
 							<div class="card-body">
 								<h5 class="card-title"><%=p.getNome()%></h5>
 								<h6 class="price">Prezzo: <%=p.getPrezzo()%>$</h6>
@@ -102,7 +100,7 @@ ArrayList<Cappello> product_list = (ArrayList<Cappello>) request.getAttribute("s
 					%>
 					<div class="col-md-3 my-3">
 						<div class="card w-100" style="width: 18rem;">
-							<img src="product-images/<%=p.getImg() %>" class="card-img-top" alt="...">
+							<img src="product-images/<%=p.getFoto() %>" class="card-img-top" alt="...">
 							<div class="card-body">
 								<h5 class="card-title"><%=p.getNome() %></h5>
 								<h6 class="price">Prezzo: <%=p.getPrezzo() %>$</h6>

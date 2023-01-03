@@ -30,8 +30,8 @@ public class PaymentServlet extends HttpServlet {
 			String scadenza=request.getParameter("payment-scadenza");
 			User auth=(User) request .getSession().getAttribute("auth");
 			try {
-				PaymentDao pdao=new PaymentDao(DbCon.getConnection());
-				result=pdao.insertPayment(auth.getId(),proprietario,scadenza,num,cvi);
+				CardDAO pdao=new CardDAO(DbCon.getConnection());
+				result=pdao.insertCard(proprietario,num,scadenza,cvi,1);
 				if(result) {
 					response.sendRedirect("show-products");
 				}else {
