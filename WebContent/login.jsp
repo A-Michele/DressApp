@@ -13,7 +13,7 @@ function validation(){
 	var valPass = document.login.password;
 
 	if( validateEmail(valEmail)){
-		if(validatePass(valPass,7,12))
+		if(validatePass(valPass,9,15))
 			{
 				return true;
 			}
@@ -77,27 +77,17 @@ function validatePass(valPass, mx, my){
 			<div class="card-body">
 				<form action="user-login" method="post" name="sigin" onsubmit="return validation()">
 					<div class="form-group">
-						<label>Email</label> <input type="email"
-							class="form-control" name="login-email"
-							placeholder="mariorossi@gmail.com" required>
-							<%String errorMail = null;
-					 errorMail = (String) getServletContext().getAttribute("errorEmail");
-							if(errorMail != null){%>
-								<p style="color: red">*L'email che hai inserito non corrisponde ad alcun account !  Registrati !</p>
-							<%
-							getServletContext().removeAttribute("errorEmail");}
-							%>	
+						<label>Email</label>
+                        <input type="email" class="form-control" name="login-email" placeholder="mariorossi@gmail.com" required>
 					</div>
 					<div class="form-group">
-						<label>Password</label> <input type="password"
-							class="form-control" name="login-password" placeholder="********"
-							required>
-							<%String error = null;
-					 error = (String) getServletContext().getAttribute("errorPass");
+						<label>Password</label> <input type="password" class="form-control" name="login-password" placeholder="********" required>
+						<%String error = null;
+					     error = (String) getServletContext().getAttribute("errorLogin");
 							if(error != null){%>
-								<p style="color: red">*La password che hai inserito non è corretta !</p>
+								<p style="color: red">*Email o password non corrette!</p>
 							<%
-							getServletContext().removeAttribute("errorPass");}
+							getServletContext().removeAttribute("errorLogin");}
 							%>	
 					</div>
 					<p>

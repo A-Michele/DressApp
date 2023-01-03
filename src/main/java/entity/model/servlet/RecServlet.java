@@ -31,7 +31,7 @@ public class RecServlet extends HttpServlet {
 		try {
 			UserDao udao=new UserDao(DbCon.getConnection());
 			User us=new User();
-			us=udao.userRec(nome,cognome,email, password);
+			us=udao.userRec(nome,cognome,email, password,false);
 			if(us==null) {
 				response.sendRedirect("registrazione.jsp");
 			}
