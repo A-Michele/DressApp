@@ -5,7 +5,6 @@ import java.sql.Date;
 public class Cappello {
 	
 	private int id;
-	private static int idStatico=0;
 	private String nome;
 	private String categoria;
 	private float prezzo;
@@ -16,7 +15,6 @@ public class Cappello {
 	
 
 	public Cappello(String nome, String cateogria, float prezzo, String foto, String descrizione, int disp) {
-		id=idStatico++;
 		this.nome = nome;
 		this.categoria = cateogria;
 		this.prezzo = prezzo;
@@ -27,14 +25,6 @@ public class Cappello {
 	}
 
 	public Cappello() {
-		id=idStatico++;
-		this.nome = null;
-		this.categoria = null;
-		this.prezzo = 0;
-		this.foto=null;
-		this.descrizione=null;
-		this.disp=0;
-		data_ultima_modifica=null;
 	}
 
 	public int getDisp() {
@@ -57,8 +47,8 @@ public class Cappello {
 		return id;
 	}
 	
-	public void setId(int x) {
-		id=x;
+	public void setId(int id) {
+		this.id=id;
 	}
 
 	public String getNome() {
@@ -103,7 +93,7 @@ public class Cappello {
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", nome=" + nome + ", categoria=" + categoria + ", prezzo=" + prezzo + ", img="
+		return "Cappello [id=" + id + ", nome=" + nome + ", categoria=" + categoria + ", prezzo=" + prezzo + ", img="
 				+ foto + ", descrizione=" + descrizione + ", disp=" + disp + ", data ultima modifica="+data_ultima_modifica+"]";
 	}
 }
