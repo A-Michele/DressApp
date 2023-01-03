@@ -122,7 +122,7 @@ public class CappelloDao {
         ArrayList<Cappello> products=new ArrayList<Cappello>();
         try {
             query="SELECT * FROM Cappello WHERE nome LIKE '%"+s+"%'";
-            pst=this.con.prepareStatement(query);
+            pst=con.prepareStatement(query);
             rs=pst.executeQuery();
             while(rs.next()) {
                 Cappello p =new Cappello();

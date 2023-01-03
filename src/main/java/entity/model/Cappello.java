@@ -103,7 +103,7 @@ public class Cappello {
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", nome=" + nome + ", categoria=" + categoria + ", prezzo=" + prezzo + ", img="
+		return "Cappello [id=" + id + ", nome=" + nome + ", categoria=" + categoria + ", prezzo=" + prezzo + ", img="
 				+ foto + ", descrizione=" + descrizione + ", disp=" + disp + ", data ultima modifica="+data_ultima_modifica+"]";
 	}
 }
