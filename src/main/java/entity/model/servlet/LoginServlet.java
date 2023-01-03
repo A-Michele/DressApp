@@ -29,27 +29,20 @@ public class LoginServlet extends HttpServlet {
 			String password=request.getParameter("login-password");
 			try {
 				UserDao udao=new UserDao(DbCon.getConnection());
-				boolean t=udao.retrivebyMail(email);
-				if(!t){
-						getServletContext().setAttribute("errorEmail",  "errorEmail");
-						response.sendRedirect("login.jsp");
-						System.out.println("Login fallito per null");
-						return;
-				}
 				
 				User user=udao.userLogin(email, password);
 				if(user==null) {
-					getServletContext().setAttribute("errorPass",  "errorPass");
+					getServletContext().setAttribute("errorLogin",  "errorLogin");
 					response.sendRedirect("login.jsp");
-					System.out.println("Login fallito per pass");
+					System.out.println("Match fallito");
 				}else {
 					System.out.println(" is admin:"+user.getIsAdmin());
-					if(user.getIsAdmin()==1) {
+					if(user.getIsAdmin()==true) {
 						request.getSession().setAttribute("auth", user);
 						response.sendRedirect("admin.jsp");
 					}else {
 						request.getSession().setAttribute("auth", user);
-						response.sendRedirect("show-products");
+						response.sendRedirect("index.jsp");
 					}
 				}
 			} catch (ClassNotFoundException | SQLException e) {

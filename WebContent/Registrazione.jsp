@@ -2,14 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@page import="entity.model.*" %>
 <%@page import="java.util.ArrayList" %>
-	<%
-	User auth =(User) request.getSession().getAttribute("auth");
-	if(auth!=null){
-		response.sendRedirect("index.jsp");
-	}
 	
-	
-	%>
 <!DOCTYPE html>
 <html>
 <head>

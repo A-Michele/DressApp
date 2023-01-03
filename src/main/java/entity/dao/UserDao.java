@@ -72,9 +72,9 @@ public class UserDao {
         try {
             int rSet;
             PreparedStatement pSte;
-            query="INSERT INTO User VALUES(?,?,MD5(?),?,?,?)";
+            query="INSERT INTO User VALUES(?,?,?,?,?,?)";
             pSte=con.prepareStatement(query);
-            pSte.setInt(1, user.getId());
+            pSte.setInt(1,0);
             pSte.setString(2,email);
             pSte.setString(3,password);
             pSte.setString(4,nome);

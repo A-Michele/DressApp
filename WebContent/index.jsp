@@ -9,9 +9,9 @@
 User auth = (User) request.getSession().getAttribute("auth");
 //System.out.println("index:"+guest);
 
-if (auth != null) {
+//if (auth != null) {
 	request.setAttribute("auth", auth);
-}else{
+/*}else{
 	auth=null;
 	
 	/*
@@ -22,7 +22,7 @@ if (auth != null) {
 	*/
 	//auth=new User();
 	//auth.setIsGuest(1);
-}
+//}
 
 /*
 ProductDao pd = new ProductDao(DbCon.getConnection());
@@ -41,10 +41,6 @@ ArrayList<Cappello> product_list = (ArrayList<Cappello>) request.getAttribute("s
 <%@ include file="includes/header.jsp"%>
 </head>
 <body>
-	<%@ include file="includes/navbar.jsp"%>
-	<%
-	//out.print(DbCon.getConnection());
-	%>
 	<div class="container text-center">
 		<form class="search" action="search-bar" type="POST">
   			<br><input type="text" placeholder="Cerca..." name="search">
@@ -72,7 +68,7 @@ ArrayList<Cappello> product_list = (ArrayList<Cappello>) request.getAttribute("s
 							<img src="product-images/<%=p.getFoto()%>" class="card-img-top" alt="...">
 							<div class="card-body">
 								<h5 class="card-title"><%=p.getNome()%></h5>
-								<h6 class="price">Prezzo: <%=p.getPrezzo()%>$</h6>
+								<h6 class="price">Prezzo: <%=p.getPrezzo()%>€</h6>
 								<h6 class="category">Categoria: <%=p.getCategoria()%></h6>
 								<h6 class="description">Dettagli: <%=p.getDescrizione()%></h6>
 								<div class="mt-3 d-flex float-right justify-content-between">
@@ -103,7 +99,7 @@ ArrayList<Cappello> product_list = (ArrayList<Cappello>) request.getAttribute("s
 							<img src="product-images/<%=p.getFoto() %>" class="card-img-top" alt="...">
 							<div class="card-body">
 								<h5 class="card-title"><%=p.getNome() %></h5>
-								<h6 class="price">Prezzo: <%=p.getPrezzo() %>$</h6>
+								<h6 class="price">Prezzo: <%=p.getPrezzo() %>€</h6>
 								<h6 class="category">Categoria: <%=p.getCategoria() %></h6>
 								<h6 class="description">Dettagli: <%=p.getDescrizione() %></h6>
 								<div class="mt-3 d-flex float-right justify-content-between">
