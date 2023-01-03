@@ -5,14 +5,11 @@ public class DettaglioOrdine{
 	private int quantita;
 	private int ordine;
 	public DettaglioOrdine(int cappello, int quantita, int ordine) {
-		super();
 		this.cappello = cappello;
 		this.quantita = quantita;
 		this.ordine = ordine;
 	}
 	public DettaglioOrdine() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 	public int getCappello() {
 		return cappello;

@@ -2,7 +2,6 @@ package entity.model;
 
 public class Card {
 	private int id;
-	private static int idStatico= 0;
 	private String  proprietario;
 	private String numeroCarta;
 	private String dataScadenza;
@@ -11,8 +10,6 @@ public class Card {
 	
 	
 	public Card(String proprietario, String numeroCarta, String dataScadenza, int cvv, int user) {
-		super();
-		this.id=idStatico++;
 		this.proprietario = proprietario;
 		this.numeroCarta = numeroCarta;
 		this.dataScadenza = dataScadenza;
@@ -21,7 +18,6 @@ public class Card {
 	}
 
 	public Card() {
-		this.id=idStatico++;
 	}
 
 	public String getProprietario() {
