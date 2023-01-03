@@ -77,7 +77,7 @@ public class Cappello {
 		this.categoria = cateogria;
 	}
 
-	public double getPrezzo() {
+	public float getPrezzo() {
 		return prezzo;
 	}
 

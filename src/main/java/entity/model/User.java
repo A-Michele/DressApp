@@ -7,10 +7,8 @@ public class User {
 	private String email;
 	private String password;
 	private boolean is_Admin;
-	private static int idStatico=0;
 	
-		public User( String name, String cognome, String email, String password, boolean isAdmin) {
-		id=idStatico++;
+	public User(String name, String cognome, String email, String password, boolean isAdmin) {
 		this.name = name;
 		this.cognome = cognome;
 		this.email = email;
@@ -19,20 +17,14 @@ public class User {
 	}
 
 	public User() {
-		id=idStatico++;
-		name=null;
-		cognome=null;
-		email=null;
-		password=null;
-		is_Admin=false;
 	}
 
 	public int getId() {
 		return id;
 	}
 	
-	public void setId(int x) {
-		id=x;
+	public void setId(int id) {
+		this.id=id;
 	}
 
 	public String getName() {
