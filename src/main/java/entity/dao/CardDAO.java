@@ -22,10 +22,10 @@ public class CardDAO {
 	public CardDAO() {
 	}
 	
-	public List<Card> getAllProducts(){
-		List<Card> products=new ArrayList<Card>();
+	public ArrayList<Card> getAllCards(int card_user){
+		ArrayList<Card> cards=new ArrayList<Card>();
 		try {
-			query="SELECT * FROM card";
+			query="SELECT * FROM user WHERE user=" + card_user;
 			//Connection c = DbCon.getConnection();
 			pst=this.con.prepareStatement(query);
 			rs=pst.executeQuery();
@@ -37,12 +37,12 @@ public class CardDAO {
 				row.setDataScadenza(rs.getString("dataScadenza"));
 				row.setCvv(rs.getInt("cvv"));
 				row.setUser(rs.getInt("user"));
-				products.add(row);
+				cards.add(row);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return products;
+		return cards;
 	}
 	
 	
@@ -59,7 +59,7 @@ public class CardDAO {
 	}
 	
 	
-	public void insertCard(String proprietario,String numeroCarta,String dataScadenza,int cvv, int user) {
+	public boolean insertCard(String proprietario,String numeroCarta,String dataScadenza,int cvv, int user) {
 		Card p= new Card(); // Creo la card per fargli generare automaticamente l'id corretto da inserire nella query
         try {
             query="INSERT INTO Cappello(id,proprietario,numeroCarta,dataScadenza,cvv,user)"
@@ -72,10 +72,12 @@ public class CardDAO {
             pst.setInt(5, cvv);
             pst.setInt(6, user);
             pst.executeUpdate();
+            return true;
         }
         catch(Exception e){
             e.printStackTrace();
             }
+        return false;
 	}
 	
 	public Card retriveCardById(int card_id) {

@@ -18,7 +18,6 @@
 <%@ include file="includes/header.jsp"%>
 </head>
 <body>
-	<%@ include file="includes/navbar.jsp"%>
 
 
 	<div class="container">
@@ -39,7 +38,7 @@
 					
 					<div class="form-group">
 						<label>Data di scadenza</label> <input type="text"
-							class="form-control" name="payment-scadenza" placeholder="--/--/-----"
+							class="form-control" name="payment-scadenza" placeholder="--/--/----"
 							required>
 					</div>
 					<div class="form-group">

@@ -80,16 +80,22 @@ for(Cart c:cart_list){
 					<td><%=dcf.format(c.getPrezzo())%></td>
 					<td>
 						<form method="post" class="form-inline">
-							<input type="hidden" name="id" value="<%=c.getId()%>" class="form-input">
+							<input type="hidden" name="id" value="<%=c.getId()%>"
+								class="form-input">
 							<div class="form-group d-flex justifay-content-between w-50">
-								<a class="btn btn-sm btn-decre" href="dec?p_id=<%=c.getId_prodotto()%>"><i class="fas fa-minus-square"></i></a>
-								<input type="text" name="quantity" class="form-cntrol w-50" value="<%=c.getQuantita()%>" readonly>
-								<a class="btn btn-sm btn-incre"	href="inc?p_id=<%=c.getId_prodotto()%>"><i class="fas fa-plus-square"></i></a>
+								<a class="btn btn-sm btn-decre"
+									href="dec?p_id=<%=c.getId_prodotto()%>"><i
+									class="fas fa-minus-square"></i></a> <input type="text"
+									name="quantity" class="form-cntrol w-50"
+									value="<%=c.getQuantita()%>" readonly> <a
+									class="btn btn-sm btn-incre"
+									href="inc?p_id=<%=c.getId_prodotto()%>"><i
+									class="fas fa-plus-square"></i></a>
 							</div>
 						</form>
 					</td>
-					<td>
-										<a class="btn btn-sm btn-danger" href="removeCart?p_id=<%=c.getId_prodotto()%>">Rimuovi</a></td>
+					<td><a class="btn btn-sm btn-danger"
+						href="removeCart?p_id=<%=c.getId_prodotto()%>">Rimuovi</a></td>
 				</tr>
 				<%
 					}
