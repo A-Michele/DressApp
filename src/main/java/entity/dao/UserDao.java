@@ -31,8 +31,9 @@ public class UserDao {
 				user.setName(rs.getString("nome"));
 				user.setCognome(rs.getString("cognome"));
 				user.setEmail(rs.getString("email"));
-				user.setIsAdmin(rs.getBoolean("is_Admin"));
 				user.setPassword(rs.getString("password"));
+				user.setIsAdmin(rs.getInt("is_Admin"));
+				user.setIsGuest(rs.getInt("is_Guest"));
 			}
 		}
 		catch(Exception e) {
@@ -67,19 +68,20 @@ public class UserDao {
 	
 	
 	// Metodo Create per il salvataggio del nuovo user
-	public User userRec(String nome,String cognome,String email,String password, boolean is_Admin) {
+	public User userRec(String nome,String cognome,String email,String password, int is_Admin, int is_Guest) {
         User user=new User();
         try {
             int rSet;
             PreparedStatement pSte;
-            query="INSERT INTO User VALUES(?,?,?,?,?,?)";
+            query="INSERT INTO User VALUES(?,?,?,?,?,?,?)";
             pSte=con.prepareStatement(query);
             pSte.setInt(1,0);
             pSte.setString(2,email);
             pSte.setString(3,password);
             pSte.setString(4,nome);
             pSte.setString(5,cognome);
-            pSte.setBoolean(6, is_Admin);
+            pSte.setInt(6, is_Admin);
+            pSte.setInt(7, is_Guest);
             rSet=pSte.executeUpdate();
             if(rSet>0) {
                 user.setName(nome);
@@ -87,6 +89,7 @@ public class UserDao {
                 user.setEmail(email);
                 user.setPassword(password);
                 user.setIsAdmin(is_Admin);
+                user.setIsAdmin(is_Guest);
             }
             else{
                 return user=null;

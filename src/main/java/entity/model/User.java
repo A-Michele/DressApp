@@ -6,15 +6,18 @@ public class User {
 	private String cognome;
 	private String email;
 	private String password;
-	private boolean is_Admin;
+	private int is_Admin;
+	private int is_Guest;
 	
-	public User(String name, String cognome, String email, String password, boolean isAdmin) {
+	public User(String name, String cognome, String email, String password, int isAdmin, int isGuest) {
 		this.name = name;
 		this.cognome = cognome;
 		this.email = email;
 		this.password = password;
 		this.is_Admin = isAdmin;
+		this.is_Guest = isGuest;
 	}
+	
 
 	public User() {
 	}
@@ -59,17 +62,24 @@ public class User {
 		this.password = password;
 	}
 
-	public boolean getIsAdmin() {
+	public int getIsAdmin() {
 		return is_Admin;
 	}
-
-	public void setIsAdmin(boolean isAdmin) {
+	
+	public int getIsGuest() {
+		return is_Guest;
+	}
+	
+	public void setIsGuest(int IsGuest) {
+		this.is_Admin = IsGuest;
+	}
+	public void setIsAdmin(int isAdmin) {
 		this.is_Admin = isAdmin;
 	}
 	
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", cognome=" + cognome + ", email=" + email + ", password="
-				+ password + ", isAdmin=" + is_Admin + "]";
+				+ password + ", isAdmin=" + is_Admin + ", isGuest=" + is_Guest + "]";
 	}
 	
 }
