@@ -48,7 +48,7 @@ public class ModificaServlet extends HttpServlet {
 		try {
 			CappelloDao pdao=new CappelloDao(DbCon.getConnection());
 			boolean b=pdao.updateProdotto(id,nome,desc,costo,categoria,foto,dispo);
-			if(b=true) {
+			if(b==true) {
 				response.sendRedirect("ProdottiAdmin.jsp");
 			}
 			else {
