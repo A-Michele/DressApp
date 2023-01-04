@@ -7,29 +7,16 @@
 <%@page import="java.util.List"%>
 <%
 User auth = (User) request.getSession().getAttribute("auth");
-//System.out.println("index:"+guest);
 
-//if (auth != null) {
+if (auth != null) {
 	request.setAttribute("auth", auth);
-/*}else{
-	auth=null;
-	
-	/*
-	if(guest==null){
-		GuestDao gdao=new GuestDao(DbCon.getConnection());
-		gdao.addGuest();
-	}
-	*/
-	//auth=new User();
-	//auth.setIsGuest(1);
-//}
+}else{
+	auth=new User();
+	auth.setIsGuest(1);
+	request.setAttribute("auth", auth);
+}
 
-/*
-ProductDao pd = new ProductDao(DbCon.getConnection());
-List<Product> products = pd.getAllProducts();
-*/
-List<Cappello> products = (List<Cappello>) request.getAttribute("products");
-
+List<Cappello> products = (List<Cappello>) request.getSession().getAttribute("products");
 ArrayList<Cappello> product_list = (ArrayList<Cappello>) request.getAttribute("search-product");
 %>
 
@@ -37,10 +24,12 @@ ArrayList<Cappello> product_list = (ArrayList<Cappello>) request.getAttribute("s
 <html>
 <head>
 <meta charset="UTF-8">
-<title>HOME</title>
+<title>INDEX</title>
 <%@ include file="includes/header.jsp"%>
 </head>
 <body>
+	<%@ include file="includes/navbar.jsp"%>
+	
 	<div class="container text-center">
 		<form class="search" action="search-bar" type="POST">
   			<br><input type="text" placeholder="Cerca..." name="search">
@@ -51,36 +40,32 @@ ArrayList<Cappello> product_list = (ArrayList<Cappello>) request.getAttribute("s
 		
 		
 		<div class="row">
-		<%
-		if(product_list!=null){			
+		<%if(product_list!=null){			
 				if(product_list.size()==0){
-		%>
+					%>
 					<div class="container text-center">
 							<br><br><h3>Nessun prodotto trovato...</h3>
 					</div>
 					<%
-					}
-							else{
-								for (Cappello p : product_list) {
+					
+				}
+				else{
+					for (Cappello p : product_list) {
 					%>
 					<div class="col-md-3 my-3">
 						<div class="card w-100" style="width: 18rem;">
-							<img src="product-images/<%=p.getFoto()%>" class="card-img-top" alt="...">
+							<img src="product-images/<%=p.getFoto() %>" class="card-img-top" alt="...">
 							<div class="card-body">
-								<h5 class="card-title"><%=p.getNome()%></h5>
-								<h6 class="price">Prezzo: <%=p.getPrezzo()%>€</h6>
-								<h6 class="category">Categoria: <%=p.getCategoria()%></h6>
-								<h6 class="description">Dettagli: <%=p.getDescrizione()%></h6>
+								<h5 class="card-title"><%=p.getNome() %></h5>
+								<h6 class="price">Prezzo: <%=p.getPrezzo() %>&euro;</h6>
+								<h6 class="category">Categoria: <%=p.getCategoria() %></h6>
+								<h6 class="description">Dettagli: <%=p.getDescrizione() %></h6>
 								<div class="mt-3 d-flex float-right justify-content-between">
 									<form action="add-to-cart" method="get">
-                                	<%
-                                	if(auth!=null){
-                                	%>
-                                	<input type="hidden" name="u_id" value="<%=auth.getId()%>">
-                                	<%
-                                	}
-                                	%>
-                                	<input type="hidden" name="p_id" value="<%=p.getId()%>">
+                                	<%if(auth!=null){ %>
+                                	<input type="hidden" name="u_id" value="<%= auth.getId() %>">
+                                	<%} %>
+                                	<input type="hidden" name="p_id" value="<%= p.getId() %>">
                                 	<input type="submit" class="btn btn-primary" value="Add to cart">
                             </form>
 								</div>
@@ -89,17 +74,17 @@ ArrayList<Cappello> product_list = (ArrayList<Cappello>) request.getAttribute("s
 					</div>
 					<%
 					}
-							}
-						}else{
-							if(products!=null){
-							for (Cappello p : products) {
+				}
+			}else{
+				if(products!=null){
+				for (Cappello p : products) {
 					%>
 					<div class="col-md-3 my-3">
 						<div class="card w-100" style="width: 18rem;">
 							<img src="product-images/<%=p.getFoto() %>" class="card-img-top" alt="...">
 							<div class="card-body">
 								<h5 class="card-title"><%=p.getNome() %></h5>
-								<h6 class="price">Prezzo: <%=p.getPrezzo() %>€</h6>
+								<h6 class="price">Prezzo: <%=p.getPrezzo() %>&euro;</h6>
 								<h6 class="category">Categoria: <%=p.getCategoria() %></h6>
 								<h6 class="description">Dettagli: <%=p.getDescrizione() %></h6>
 								<div class="mt-3 d-flex float-right justify-content-between">
