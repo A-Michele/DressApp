@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="entity.model.*" %>
-<%@page import="java.util.ArrayList" %>
+<%@page import="entity.model.*"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,9 +59,10 @@ function validatePass(valPass, mx, my){
 <%@ include file="includes/header.jsp"%>
 </head>
 <body>
-    
+
 	<div class="container text-center">
-		<a class="navbar-brand" href="show-products"><img src="product-images/logo.jpeg" alt="..."></a>
+		<a class="navbar-brand" href="show-products"><img
+			src="product-images/logo.jpeg" alt="..."></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-bs-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -75,25 +76,29 @@ function validatePass(valPass, mx, my){
 		<div class="card w-50 mx-auto my-5">
 			<div class="card-header text-center">Login</div>
 			<div class="card-body">
-				<form action="user-login" method="post" name="sigin" onsubmit="return validation()">
+				<form action="user-login" method="post" name="sigin"
+					onsubmit="return validation()">
 					<div class="form-group">
-						<label>Email</label>
-                        <input type="email" class="form-control" name="login-email" placeholder="mariorossi@gmail.com" required>
+						<label>Email</label> <input type="email" class="form-control"
+							name="login-email" placeholder="mariorossi@gmail.com" required>
 					</div>
 					<div class="form-group">
-						<label>Password</label> <input type="password" class="form-control" name="login-password" placeholder="********" required>
+						<label>Password</label> <input type="password"
+							class="form-control" name="login-password" placeholder="********"
+							required>
 						<%String error = null;
 					     error = (String) getServletContext().getAttribute("errorLogin");
 							if(error != null){%>
-								<p style="color: red">*Email o password non corrette!</p>
-							<%
+						<p style="color: red">*Email o password non corrette!</p>
+						<%
 							getServletContext().removeAttribute("errorLogin");}
-							%>	
+							%>
 					</div>
 					<p>
-					Prima volta su DressApp?<a href="Registrazione.jsp"> Registrati.</a>
+						Prima volta su DressApp?<a href="Registrazione.jsp">
+							Registrati.</a>
 					</p>
-				
+
 					<div class="text-center">
 						<button type="submit" class="btn btn-primary">Login</button>
 					</div>
