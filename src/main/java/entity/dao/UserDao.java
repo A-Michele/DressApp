@@ -89,7 +89,7 @@ public class UserDao {
                 user.setEmail(email);
                 user.setPassword(password);
                 user.setIsAdmin(is_Admin);
-                user.setIsAdmin(is_Guest);
+                user.setIsGuest(is_Guest);
             }
             else{
                 return user=null;
@@ -165,5 +165,6 @@ public class UserDao {
 		}
 		return false;
 	}
+
 	
 }

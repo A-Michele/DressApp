@@ -24,7 +24,8 @@ ArrayList<Cappello> product_list = (ArrayList<Cappello>) request.getAttribute("s
 <html>
 <head>
 <meta charset="UTF-8">
-<title>INDEX</title>
+<link rel="icon" href="product-images/logo.jpg" type="image/jpg">  
+<title>DressApp - Index</title>
 <%@ include file="includes/header.jsp"%>
 </head>
 <body>

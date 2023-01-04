@@ -31,10 +31,13 @@ public class LoginServlet extends HttpServlet {
 		try(PrintWriter out=response.getWriter()){
 			String email=request.getParameter("login-email");	//i nomi che passiamo alla get parameter sono quelli contenuti nel tag name all'interno del file jsp
 			String password=request.getParameter("login-password");
+			System.out.println(email+password);
+			
 			try {
 				UserDao udao=new UserDao(DbCon.getConnection());
 				
 				User user=udao.userLogin(email, password);
+				
 				if(user==null) {
 					getServletContext().setAttribute("errorLogin",  "errorLogin");
 					response.sendRedirect("login.jsp");
