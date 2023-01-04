@@ -71,7 +71,7 @@ public class User {
 	}
 	
 	public void setIsGuest(int IsGuest) {
-		this.is_Admin = IsGuest;
+		this.is_Guest = IsGuest;
 	}
 	public void setIsAdmin(int isAdmin) {
 		this.is_Admin = isAdmin;

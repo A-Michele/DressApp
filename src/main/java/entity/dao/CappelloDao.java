@@ -160,7 +160,7 @@ public class CappelloDao {
             query="INSERT INTO Cappello(id,nome,descrizione,prezzo,categoria,foto,disponibilita,data_ultima_modifica)"
             		+ " VALUES(?,?,?,?,?,?,?,?)";
             pst=this.con.prepareStatement(query);
-            pst.setInt(1, p.getId());
+            pst.setInt(1, 0);
             pst.setString(2, nome);
             pst.setString(3, descrizione);
             pst.setDouble(4, costo);
