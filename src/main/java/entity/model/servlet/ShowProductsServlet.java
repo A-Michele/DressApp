@@ -29,7 +29,7 @@ public class ShowProductsServlet extends HttpServlet {
 			User auth=(User) request .getSession().getAttribute("auth");
 			CappelloDao pd = new CappelloDao(DbCon.getConnection());
 			List<Cappello> products = pd.getAllProducts();
-			request.setAttribute("products",products);
+			request.getSession().setAttribute("products",products);
 			RequestDispatcher dispatcher  = request.getRequestDispatcher("index.jsp");
 			dispatcher.forward(request, response);
 		} catch (ClassNotFoundException e) {

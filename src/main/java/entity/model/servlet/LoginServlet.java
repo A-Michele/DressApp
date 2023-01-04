@@ -3,7 +3,9 @@ package entity.model.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entity.connection.DbCon;
+import entity.dao.CappelloDao;
 import entity.dao.UserDao;
+import entity.model.Cappello;
 import entity.model.User;
 
 @WebServlet("/user-login")
@@ -36,11 +40,11 @@ public class LoginServlet extends HttpServlet {
 					response.sendRedirect("login.jsp");
 					System.out.println("Match fallito");
 				}else {
-					System.out.println(" is admin:"+user.getIsAdmin());
-					if(user.getIsAdmin()==true) {
+					//System.out.println("is admin:"+user.getIsAdmin());
+					if(user.getIsAdmin()==1) {
 						request.getSession().setAttribute("auth", user);
 						response.sendRedirect("admin.jsp");
-					}else {
+					}else {			
 						request.getSession().setAttribute("auth", user);
 						response.sendRedirect("index.jsp");
 					}

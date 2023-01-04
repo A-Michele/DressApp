@@ -22,11 +22,11 @@ CappelloDao pd = new CappelloDao(DbCon.getConnection());
 List<Cappello> products = pd.getAllProducts();
 
 CappelloDao pDao = new CappelloDao(DbCon.getConnection());
-	CartDao cDao=new CartDao(DbCon.getConnection());
-	ArrayList<Cart> cart_list = cDao.retriveOrders();
-	ArrayList<Cart> carrello=new ArrayList<Cart>();
-	for(Cart c:cart_list){
-		Cart c1=pDao.completeCart(c);
+	OrderDao cDao=new OrderDao(DbCon.getConnection());
+	ArrayList<Ordine> cart_list = cDao.retriveOrders();
+	ArrayList<Ordine> carrello=new ArrayList<Ordine>();
+	for(Ordine c:cart_list){
+		Ordine c1=pDao.completeCart(c);
 		carrello.add(c1);
 	}
 %>
