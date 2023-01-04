@@ -121,6 +121,25 @@ public class UserDao {
 		}
 	}
 	
+	
+	public boolean doDeleteById(int id){
+		
+		try{
+			String query = "DELETE FROM User WHERE id = ?";
+		pst= con.prepareStatement(query);
+		pst.setInt(1, id);
+		int result = pst.executeUpdate();
+		
+		if (result == 1) return true;
+		return false;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			return false;
+		}
+	}
+	
 	//Metodo per fare UPDATE dell'user all'interno del db.. Attributo è l'attributo dell'entità, valore è il nuovo valore che vogliamo inserire
 	public void doUpdate(User utente,String attributo, String valore) throws SQLException {
 		
@@ -130,4 +149,21 @@ public class UserDao {
 		ps.setString(2, utente.getEmail());
 		ps.executeUpdate();
 	}
+	
+	public boolean doUpdateById(int id,String attributo, String valore) throws SQLException {
+		
+		try{
+			String query = "UPDATE User set "+attributo+"=? where id= ?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, valore);
+			ps.setInt(2, id);
+			ps.executeUpdate();
+			return true;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 }
