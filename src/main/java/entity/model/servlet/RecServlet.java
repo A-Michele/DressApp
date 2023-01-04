@@ -30,12 +30,15 @@ public class RecServlet extends HttpServlet {
 		
 		try {
 			UserDao udao=new UserDao(DbCon.getConnection());
-			User us=new User();
-			us=udao.userRec(nome,cognome,email, password,false);
-			if(us==null) {
-				response.sendRedirect("registrazione.jsp");
+			boolean x=udao.retrivebyMail(email);
+			if(x==true) {
+				getServletContext().setAttribute("errorRec",  "errorRec");
+				response.sendRedirect("login.jsp");
+				System.out.println("Email già esistente");
 			}
 			else {
+				User us=new User();
+				us=udao.userRec(nome,cognome,email, password,0,0);
 				response.sendRedirect("login.jsp");
 			}
 		}catch (ClassNotFoundException | SQLException e) {
