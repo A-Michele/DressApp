@@ -23,9 +23,10 @@ ArrayList<Cappello> product_list = (ArrayList<Cappello>) request.getAttribute("s
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <meta charset="UTF-8">
 <link rel="icon" href="product-images/logo.jpg" type="image/jpg">  
-<title>DressApp - Index</title>
+<title>DressApp</title>
 <%@ include file="includes/header.jsp"%>
 </head>
 <body>
@@ -108,6 +109,6 @@ ArrayList<Cappello> product_list = (ArrayList<Cappello>) request.getAttribute("s
 		</div>
 	</div>
 
-	
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>	
 </body>
 </html>
