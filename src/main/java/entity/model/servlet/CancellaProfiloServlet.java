@@ -30,7 +30,8 @@ public class CancellaProfiloServlet extends HttpServlet {
 			UserDao user= new UserDao(DbCon.getConnection());
 			boolean b= user.doDeleteById(id);
 			if(b==true) {
-				response.sendRedirect("modificheUtente.jsp");
+				//Inserire messaggio di operazione riuscita con successo
+				response.sendRedirect("login.jsp");
 			}
 			else {
 				System.out.println("Errore Cancellazione profilo");
