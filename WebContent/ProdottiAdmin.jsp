@@ -30,7 +30,7 @@ List<Cappello> products = pd.getAllProducts();
 <head>
 <meta charset="UTF-8">
 <title>ProdottiAdmin</title>
-<%@ include file="includes/header.jsp"%>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 	<%@ include file="includes/navbar.jsp"%>
@@ -95,7 +95,6 @@ List<Cappello> products = pd.getAllProducts();
 
 		</div>
 	</div>
-
-	<%@ include file="includes/footer.jsp"%>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
