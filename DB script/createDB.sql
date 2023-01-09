@@ -47,6 +47,6 @@ CREATE TABLE DettaglioOrdine(
 	cappello INT,
 	ordine INT,
 	quantita INT,
-	FOREIGN KEY(cappello) REFERENCES Cappello(id) on delete cascade on update cascade,
+	FOREIGN KEY(cappello) REFERENCES Cappello(id),
 	FOREIGN KEY(ordine) REFERENCES Ordine(id) on delete cascade on update cascade
     );
