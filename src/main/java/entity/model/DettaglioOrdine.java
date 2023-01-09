@@ -1,5 +1,6 @@
 package entity.model;
 
+
 public class DettaglioOrdine{
 	private int cappello;
 	private int quantita;

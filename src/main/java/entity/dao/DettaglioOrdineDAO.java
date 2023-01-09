@@ -9,6 +9,8 @@ import java.util.List;
 
 import entity.model.Card;
 import entity.model.DettaglioOrdine;
+import entity.model.Ordine;
+import entity.model.OrdineCompleto;
 
 public class DettaglioOrdineDAO {
 	private Connection con;
@@ -60,31 +62,81 @@ public class DettaglioOrdineDAO {
 	}
 	
 //	private Restituisce i dettagli ordini contenenti L'id dell'ordine preso in input
-	public DettaglioOrdine searchDettaglioOrdineByOrdineId(int ordine_id) {
+	public ArrayList<DettaglioOrdine> searchDettaglioOrdineByOrdineId(int ordine_id) {
 		DettaglioOrdine dettOrd=new DettaglioOrdine();
+		ArrayList<DettaglioOrdine> dettagliOrdine= null;
 		try {
-
+			dettagliOrdine =new ArrayList<DettaglioOrdine>();
             query="SELECT * from DettaglioOrdine where ordine=?";
             pst=this.con.prepareStatement(query);
             pst.setInt(1, ordine_id);
             rs=pst.executeQuery();
+            
             while(rs.next()) {
             	dettOrd.setCappello(rs.getInt("cappello"));
             	dettOrd.setQuantita(rs.getInt("quantita"));
             	dettOrd.setOrdine(rs.getInt("ordine"));
+            	dettagliOrdine.add(dettOrd);
             }
-            return dettOrd;
+            
+            return dettagliOrdine;
 			
         }catch(Exception e){
             e.printStackTrace();
         }
-		return null;
+		
+		return dettagliOrdine;
 	}
 
+	
+//	private Restituisce i dettagli ordini contenenti L'id dell'ordine preso in input
+	public ArrayList<OrdineCompleto> searchOrdiniCompleti(int ordineId) {
+		OrdineCompleto dettOrd=null;
+		ArrayList<OrdineCompleto> tuttidett= new ArrayList<OrdineCompleto>();
+		try {
+            query="SELECT user.email, cappello.nome, cappello.categoria, cappello.prezzo, dettaglioordine.quantita, ordine.data FROM user JOIN ordine  JOIN dettaglioordine JOIN cappello WHERE user.id=ordine.user AND ordine.id=dettaglioordine.ordine AND dettaglioordine.cappello=cappello.id AND ordine.is_buy=1 AND ordine.id=?";
+            pst=this.con.prepareStatement(query);
+            pst.setInt(1,ordineId);
+            rs=pst.executeQuery();
+            
+            while(rs.next()) {
+            	dettOrd=new OrdineCompleto();
+            	dettOrd.setEmail(rs.getString("email"));
+            	dettOrd.setNomeC(rs.getString("nome"));
+            	dettOrd.setCategoria(rs.getString("categoria"));
+            	dettOrd.setPrezzo(rs.getFloat("prezzo"));
+            	dettOrd.setQuantita(rs.getInt("quantita"));
+            	dettOrd.setData(rs.getDate("data"));
+            	
+            	tuttidett.add(dettOrd);
+            	
+            }
+           
+            return tuttidett;
+			
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+		
+		return tuttidett;
+	}
+	
+	/*
+	 * public ArrayList<Ordine> searchOrder(String nomeCappello){ ArrayList<Ordine>
+	 * ordini= new ArrayList<Ordine>(); try {
+	 * query="SELECT user.email, cappello.nome, cappello.categoria, cappello.prezzo, dettaglioordine.quantita,ordine.data FROM user JOIN ordine JOIN dettaglioordine JOIN cappello WHERE cappello.id=dettaglioordine.cappello AND ordine.id=dettaglioordine.ordine AND ordine.user=user.id AND cappello.nome= ?"
+	 * ; pst=this.con.prepareStatement(query); pst.setString(1,nomeCappello);
+	 * rs=pst.executeQuery(); while(rs.next()) { ordine.setId(rs.getInt("id"));
+	 * ordine.setData(rs.getDate("data")); ordine.setUser(rs.getInt("user"));
+	 * ordine.setIsBuy(rs.getBoolean("is_buy")); } return ordine;
+	 * 
+	 * }catch(Exception e){ e.printStackTrace(); } return null; }
+	 */
 
 //	private Restituisce i dettagli ordini contenenti L'id dell'user preso in input
-	public DettaglioOrdine searchDettaglioOrdineByUserId(int user_id) {
+	public ArrayList<DettaglioOrdine> searchDettaglioOrdineByUserId(int user_id) {
 		DettaglioOrdine dettOrd=new DettaglioOrdine();
+		ArrayList<DettaglioOrdine> dettagliOrdine= new ArrayList<DettaglioOrdine>();
 		try {
 
             query="SELECT * from DettaglioOrdine where user=?";
@@ -95,8 +147,9 @@ public class DettaglioOrdineDAO {
             	dettOrd.setCappello(rs.getInt("cappello"));
             	dettOrd.setQuantita(rs.getInt("quantita"));
             	dettOrd.setOrdine(rs.getInt("ordine"));
+            	dettagliOrdine.add(dettOrd);
             }
-            return dettOrd;
+            return dettagliOrdine;
 			
         }catch(Exception e){
             e.printStackTrace();
