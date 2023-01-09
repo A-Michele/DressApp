@@ -45,7 +45,7 @@ public class OrderDao {
             query="INSERT INTO Ordine(id,data,user,is_buy)"
             		+ " VALUES(?,?,?,?)";
             pst=this.con.prepareStatement(query);
-            pst.setInt(1, ordine.getId());
+            pst.setInt(1, 0);
             pst.setDate(2, data);
             pst.setInt(3, user);
             pst.setBoolean(4, is_buy);
