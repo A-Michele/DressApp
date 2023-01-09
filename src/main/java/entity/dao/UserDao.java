@@ -64,7 +64,24 @@ public class UserDao {
 		return false;
 	}
 	
-	
+	//metodo restituisce la mail dell'utente dato l'id
+	public String getMailById(int id) {
+		String mail=null;
+		try {
+			query="SELECT email FROM User WHERE id=?";
+			pst= this.con.prepareStatement(query);
+			pst.setInt(1,id);
+			rs=pst.executeQuery();
+			if(rs.next()) {
+				mail=rs.getString("email");
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			System.out.print(e.getMessage());
+		}
+		return mail;
+	}
 	
 	
 	// Metodo Create per il salvataggio del nuovo user

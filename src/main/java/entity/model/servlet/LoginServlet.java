@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
 					//System.out.println("is admin:"+user.getIsAdmin());
 					if(user.getIsAdmin()==1) {
 						request.getSession().setAttribute("auth", user);
-						response.sendRedirect("admin.jsp");
+						response.sendRedirect("ProdottiAdmin.jsp");
 					}else {			
 						request.getSession().setAttribute("auth", user);
 						response.sendRedirect("index.jsp");
