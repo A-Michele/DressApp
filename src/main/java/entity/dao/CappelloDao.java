@@ -222,4 +222,17 @@ public class CappelloDao {
 		
 		return false;
 	}
+
+	public void updateDisp(int id, int dispo) {
+		try {
+            query="UPDATE Cappello SET disponibilita=? WHERE id=?";
+            pst=this.con.prepareStatement(query);
+            pst.setInt(1, dispo);
+            pst.setInt(2, id);
+            pst.executeUpdate();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+		
+	}
 }

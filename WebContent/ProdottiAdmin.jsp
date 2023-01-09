@@ -37,6 +37,14 @@ List<Cappello> products = pd.getAllProducts();
 	<%
 	//out.print(DbCon.getConnection());
 	%>
+	<%if(auth.getIsAdmin()!=1){ %>
+		<div class="container">
+			<h1>SPIACENTI MA NON PUOI VISUALIZZARE GLI ORDINI DEGLI UTENTI SE NON SEI ADMIN</h1>
+		</div>
+		<%}else{%>
+	
+	
+	
 	
     
 	<div class="container">
@@ -91,6 +99,7 @@ List<Cappello> products = pd.getAllProducts();
 			<%
 				}
 			}
+		}
 			%>
 
 		</div>
