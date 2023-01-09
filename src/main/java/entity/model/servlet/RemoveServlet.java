@@ -26,6 +26,8 @@ public class RemoveServlet extends HttpServlet {
 		response.setContentType("txt/html;charset=UTF-8");
 		try(PrintWriter out=response.getWriter()){
 			int p_id= Integer.parseInt(request.getParameter("p_id"));
+			
+			//System.out.println(p_id);
 			User auth=(User) request.getSession().getAttribute("auth");
 			if(p_id>0) {
 				CappelloDao pDao=new CappelloDao(DbCon.getConnection());
