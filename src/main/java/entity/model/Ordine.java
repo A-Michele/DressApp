@@ -3,25 +3,19 @@ import java.sql.Date;
 
 public class Ordine {
 	private int id;
-	private static int idStatico=0;
 	private Date data;
 	private int user;
 	private boolean isBuy;
 
 
 	public Ordine(int id, Date data, int user, boolean isBuy) {
-		this.id = idStatico++;
+		this.id = id;
 		this.data = data;
 		this.user = user;
 		this.isBuy = isBuy;
 	}
 
-	public Ordine() {
-		this.id = idStatico++;
-		this.data = null;
-		this.user = 0;
-		this.isBuy = false;
-	}
+	public Ordine() {}
 
 	public int getId() {
 		return id;
