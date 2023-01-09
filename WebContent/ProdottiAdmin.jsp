@@ -20,10 +20,10 @@ if (auth != null) {
 CappelloDao pd = new CappelloDao(DbCon.getConnection());
 List<Cappello> products = pd.getAllProducts();
 
-ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
-if (cart_list != null) {
-	request.setAttribute("cart-list", cart_list);
-}
+// ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
+// if (cart_list != null) {
+// 	request.setAttribute("cart-list", cart_list);
+// }
 %>
 <!DOCTYPE html>
 <html>
@@ -60,7 +60,7 @@ if (cart_list != null) {
 			%>
 			<div class="col-md-3 my-3">
 				<div class="card w-100" style="width: 18rem;">
-					<img src="product-images/<%=p.getImg() %>" class="card-img-top" alt="...">
+					<img src="product-images/<%=p.getFoto() %>" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title"><%=p.getNome() %></h5>
 						<h6 class="price">Prezzo: <%=p.getPrezzo() %>$</h6>

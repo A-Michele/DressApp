@@ -5,7 +5,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import entity.connection.DbCon;
 import entity.model.Ordine;
 
 public class OrderDao {
@@ -38,7 +40,55 @@ public class OrderDao {
 	}
 	
 	
+	
 	//------METODI CRUD-----
+	
+	public ArrayList<Ordine> getAllOrders(){
+		ArrayList<Ordine> ordini=new ArrayList<Ordine>();
+		try {
+			query="SELECT * FROM Ordine";
+			//Connection c = DbCon.getConnection();
+			pst=this.con.prepareStatement(query);
+			rs=pst.executeQuery();
+			while(rs.next()) {
+				Ordine row=new Ordine();
+				row.setId(rs.getInt("id"));
+				row.setData(rs.getDate("data"));
+				row.setUser(rs.getInt("user"));
+				row.setIsBuy(rs.getBoolean("is_buy"));
+				ordini.add(row);
+			}
+			return ordini;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return ordini;
+	}
+	
+	//metodo restituisce la mail dell'utente che ha effettuato un ordine tramite id dell'ordine
+		public String getMailUserbyOrderId(int id) {
+			String mail=null;
+			try{
+				String query = "SELECT user FROM ordine WHERE id= ?";
+				PreparedStatement ps = con.prepareStatement(query);
+				ps.setInt(1, id);
+				rs=pst.executeQuery();
+				int userId=0;
+				if(rs.next())
+					userId= rs.getInt("user");
+				UserDao uDAO= new UserDao(DbCon.getConnection());
+				mail= uDAO.getMailById(userId);
+				
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+			return mail;
+		}
+		
+		
+	
+	
 	public void doSave(Date data, int user, boolean is_buy) {
 		Ordine ordine= new Ordine();
 		try {
@@ -77,6 +127,8 @@ public class OrderDao {
 		return null;
 	}
 	
+	
+	
 	public boolean doDelete(int id) {
 		try{
 			String query = "DELETE FROM Ordine WHERE id = ?";
@@ -110,5 +162,25 @@ public class OrderDao {
 		return false;
 	}
 	
+	public ArrayList<Ordine> searchOrdersFromNameProduct(String nome){
+		ArrayList<Ordine> tuttiOrdini= new ArrayList<Ordine>();
+		Ordine o=null;
+		try {
+			query="SELECT ordine.* FROM ordine JOIN dettaglioordine JOIN cappello WHERE ordine.id=dettaglioordine.ordine AND dettaglioordine.cappello=cappello.id  AND ordine.is_buy=1 AND cappello.nome=?  ";
+			pst=this.con.prepareStatement(query);
+            pst.setString(1,nome);
+            rs=pst.executeQuery();
+            while(rs.next()) {
+            	o= new Ordine();
+            	o.setId(rs.getInt("id"));
+            	o.setData(rs.getDate("data"));
+            	o.setUser(rs.getInt("user"));
+            	o.setIsBuy(rs.getBoolean("is_buy"));
+            	tuttiOrdini.add(o);
+            }
+            if(tuttiOrdini!=null)return tuttiOrdini;
+		}catch(Exception e) {e.printStackTrace();}
+		return null;
+	}
 	
 }

@@ -3,6 +3,7 @@ package entity.model.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -14,11 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import entity.connection.DbCon;
 import entity.dao.CappelloDao;
+import entity.dao.OrderDao;
 import entity.model.Cappello;
+import entity.model.Ordine;
 import entity.model.User;
 
 /**
- * Servlet implementation class AllOrdersServlet
+ * Servlet implementation class AllOrdersServlet usata per la visualizzazione di tutti gli ordini da parte dell'admin
  */
 @WebServlet("/AllOrdersServlet")
 public class AllOrdersServlet extends HttpServlet {
@@ -28,21 +31,24 @@ public class AllOrdersServlet extends HttpServlet {
 		boolean result;
 		try (PrintWriter out=response.getWriter()){
 			User auth=(User) request .getSession().getAttribute("auth");
-			CappelloDao pd = new CappelloDao(DbCon.getConnection());
-			List<Cappello> products = pd.getAllProducts();
-			request.setAttribute("products",products);
-			RequestDispatcher dispatcher  = request.getRequestDispatcher("show-products");
+			System.out.println("SERVLETTTT");
+			String nome=request.getParameter("search");
+			try {
+				OrderDao od = new OrderDao(DbCon.getConnection());
+				ArrayList<Ordine> ordini=od.searchOrdersFromNameProduct(nome);
+				request.setAttribute("search-orders",ordini);
+			
+			RequestDispatcher dispatcher  = request.getRequestDispatcher("admin.jsp");
 			dispatcher.forward(request, response);
-		} catch (ClassNotFoundException e) {
+			} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-		} catch (SQLException e) {
+			} }catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		doGet(request, response);
 	}
 	
