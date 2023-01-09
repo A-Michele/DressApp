@@ -15,8 +15,12 @@
 					href="show-products">Home</a></li>
 					
 				<li class="nav-item"><a class="nav-link" href="cart.jsp">Cart<span class="badge bage-danger px-2">${ cart_list.size() }</span></a></li>
-				<%User auth1=(User)request.getSession().getAttribute("auth");%>
-				<%if(auth.getIsAdmin()==1){ %>
+				<%User auth1=(User)request.getSession().getAttribute("auth");
+				  if(auth1==null){%>
+					  <li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
+				<%}else{
+					if(auth1.getIsAdmin()==1){ %>
+					
 					<li class="nav-item"><a class="nav-link" href="admin.jsp">Ordini Degli Utenti</a></li>
 					<li class="nav-item"><a class="nav-link" href="ProdottiAdmin.jsp">Modifica Prodotti</a><li>
 					
@@ -31,7 +35,7 @@
           			
 					</li>
 					
-				<%}else if(auth.getIsGuest()==0){%>
+				<%}else if(auth1.getIsGuest()==0){%>
 					<li class="nav-item"><a class="nav-link" href="orders.jsp">Orders</a></li>
 					
 					 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -45,7 +49,7 @@
 					</li>
 				<%}else{%>
 					<li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
-				<%}%>
+				<%}}%>
 			</ul>
 		</div>
 
