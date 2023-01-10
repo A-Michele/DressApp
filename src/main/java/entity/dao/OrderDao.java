@@ -90,15 +90,13 @@ public class OrderDao {
 	
 	
 	public void doSave(Date data, int user, boolean is_buy) {
-		Ordine ordine= new Ordine();
 		try {
-            query="INSERT INTO Ordine(id,data,user,is_buy)"
-            		+ " VALUES(?,?,?,?)";
+            query="INSERT INTO Ordine(data,user,is_buy)"
+            		+ " VALUES(?,?,?)";
             pst=this.con.prepareStatement(query);
-            pst.setInt(1, 0);
-            pst.setDate(2, data);
-            pst.setInt(3, user);
-            pst.setBoolean(4, is_buy);
+            pst.setDate(1, data);
+            pst.setInt(2, user);
+            pst.setBoolean(3, is_buy);
             pst.executeUpdate();
         }
         catch(Exception e){
@@ -203,5 +201,20 @@ public class OrderDao {
 		}catch(Exception e) {e.printStackTrace();}
 		return null;
 	}
+
+	public int idGrande() {
+		int x=0;
+		try {
+            query="SELECT MAX(id) AS i from Ordine";
+            rs=pst.executeQuery(query);
+            while(rs.next()) {
+            	x=rs.getInt("i");
+            }
+            return x;
+            }catch(Exception e) {
+            	e.printStackTrace();
+            }
+		return -1;
 	
+	}
 }
