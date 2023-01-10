@@ -35,6 +35,7 @@ public class AddToCartServlet extends HttpServlet {
 			User auth=(User) request .getSession().getAttribute("auth");
 			if(auth.getIsGuest()==1) {
 				response.sendRedirect("login.jsp");
+				return;
 			}
 			int p_id= Integer.parseInt(request.getParameter("p_id"));
 			ordine= oDao.doRetriveByIdBuy(auth.getId());
