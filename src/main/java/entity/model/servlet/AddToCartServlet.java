@@ -35,14 +35,14 @@ public class AddToCartServlet extends HttpServlet {
 			User auth=(User) request .getSession().getAttribute("auth");
 			if(auth.getIsGuest()==1) {
 				response.sendRedirect("login.jsp");
-				return;
 			}
 			int p_id= Integer.parseInt(request.getParameter("p_id"));
 			ordine= oDao.doRetriveByIdBuy(auth.getId());
-			if(ordine==null) {
-				ordine=new Ordine(0,new Date(System.currentTimeMillis()),auth.getId(),false);
+			if(ordine.getId()==0) {
+				ordine=new Ordine(new Date(System.currentTimeMillis()),auth.getId(),false);
 				oDao.doSave(ordine.getDate(),ordine.getUser(), ordine.getIsBuy());
-				dettaglio= new DettaglioOrdine(p_id,1,ordine.getId());
+				int ID=oDao.idGrande();
+				dettaglio= new DettaglioOrdine(p_id,1,ID);
 				dDao.insertDettaglioOrdine(dettaglio.getCappello(), 1, dettaglio.getOrdine());
 			}
 			else {
