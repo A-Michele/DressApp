@@ -66,14 +66,17 @@ if(auth.getIsAdmin()!=0){
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="icon" href="product-images/logo.jpg" type="image/jpg">  
 <meta charset="UTF-8">
-<title>DressApp - ORDINI UTENTI</title>
+<title>DressApp - Ordini Utenti</title>
 <%@ include file="includes/header.jsp"%>
 <body>
        <%@ include file="includes/navbar.jsp"%>
 		<%if(auth.getIsAdmin()!=1){ %>
 		<div class="container">
 			<h1>SPIACENTI MA NON PUOI VISUALIZZARE GLI ORDINI DEGLI UTENTI SE NON SEI ADMIN</h1>
+			<%response.sendRedirect("login.jsp"); %>
 		</div>
 		<%}else{%>
 	
@@ -155,8 +158,43 @@ if(auth.getIsAdmin()!=0){
 				<% }}%>				
 			</tbody>
 	</table>
+	<button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top" style="position: fixed;bottom: 20px;
+        right: 20px;display: none; background-color:blue;">
+          <i class="fas fa-arrow-up"></i>
+        </button>
 	</div>
 	
 	<% } %>
-	</body>
+	
+	<script type="text/javascript">
+//Get the button
+let mybutton = document.getElementById("btn-back-to-top");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function () {
+scrollFunction();
+};
+
+function scrollFunction() {
+if (
+document.body.scrollTop > 20 ||
+document.documentElement.scrollTop > 20
+) {
+mybutton.style.display = "block";
+} else {
+mybutton.style.display = "none";
+}
+}
+// When the user clicks on the button, scroll to the top of the document
+mybutton.addEventListener("click", backToTop);
+
+function backToTop() {
+document.body.scrollTop = 0;
+document.documentElement.scrollTop = 0;
+}
+
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>	
+</body>
 </html>

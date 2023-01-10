@@ -95,7 +95,7 @@ ArrayList<Cappello> product_list = (ArrayList<Cappello>) request.getAttribute("s
                                 <input type="hidden" name="u_id" value="<%= auth.getId() %>">
                                 <%} %>
                                 <input type="hidden" name="p_id" value="<%= p.getId() %>">
-                                <input type="submit" class="btn btn-primary" value="Add to cart">
+                                <input type="submit" class="btn btn-primary" style="background: #404040;border:#404040" value="Add to cart">
                             	</form>
 								</div>
 							</div>
@@ -108,13 +108,13 @@ ArrayList<Cappello> product_list = (ArrayList<Cappello>) request.getAttribute("s
 		
 		%>
 		</div>
-		<button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top" style="position: fixed;bottom: 20px;
-        right: 20px;display: none; background-color:blue;">
-          <i class="fas fa-arrow-up"></i>
-        </button>
 		
 	</div>
-
+<button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top" style="position: fixed;bottom: 20px;
+        right: 20px;display: none;">
+          <i class="fas fa-arrow-up"></i>
+        </button>
+		<%@ include file="includes/footer.jsp"%>
 <script type="text/javascript">
 //Get the button
 let mybutton = document.getElementById("btn-back-to-top");

@@ -13,9 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entity.connection.DbCon;
-import entity.dao.CartDao;
 import entity.dao.CappelloDao;
-import entity.model.Cart;
 import entity.model.User;
 
 @WebServlet("/remove")
