@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import entity.model.DettaglioOrdine;
+import entity.model.Ordine;
 import entity.model.OrdineCompleto;
 
 public class DettaglioOrdineDAO {
@@ -129,29 +130,7 @@ public class DettaglioOrdineDAO {
 	 * }catch(Exception e){ e.printStackTrace(); } return null; }
 	 */
 
-//	private Restituisce i dettagli ordini contenenti L'id dell'user preso in input
-	public ArrayList<DettaglioOrdine> searchDettaglioOrdineByUserId(int user_id) {
-		DettaglioOrdine dettOrd=new DettaglioOrdine();
-		ArrayList<DettaglioOrdine> dettagliOrdine= new ArrayList<DettaglioOrdine>();
-		try {
 
-            query="SELECT * from DettaglioOrdine where user=?";
-            pst=this.con.prepareStatement(query);
-            pst.setInt(1, user_id);
-            rs=pst.executeQuery();
-            while(rs.next()) {
-            	dettOrd.setCappello(rs.getInt("cappello"));
-            	dettOrd.setQuantita(rs.getInt("quantita"));
-            	dettOrd.setOrdine(rs.getInt("ordine"));
-            	dettagliOrdine.add(dettOrd);
-            }
-            return dettagliOrdine;
-			
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-		return null;
-	}
 
 	public void updateQuantita(int quantita,int p_id, int ordine_id) {
 		try {
@@ -167,4 +146,29 @@ public class DettaglioOrdineDAO {
 		
 	}
 	
-}
+	public int getQuantita(int p_id, int o_id) {
+		DettaglioOrdine dOrdine=new DettaglioOrdine();
+		
+		try {
+            query="SELECT quantita from DettaglioOrdine where cappello=? AND ordine=?";
+            pst=this.con.prepareStatement(query);
+            pst.setInt(1,p_id);
+            pst.setInt(2,o_id);
+            rs=pst.executeQuery();
+            while(rs.next()) {
+            	dOrdine.setQuantita(rs.getInt("quantita"));
+            }
+            	return dOrdine.getQuantita();
+           
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+		return -1;
+	}
+
+	
+		
+		
+		
+	}
+	
