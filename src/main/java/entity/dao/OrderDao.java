@@ -127,6 +127,27 @@ public class OrderDao {
 		return null;
 	}
 	
+	public Ordine doRetriveByIdBuy(int user) {
+		Ordine ordine= new Ordine();
+		try {
+            query="SELECT * from Ordine where user=? AND is_buy=false";
+            pst=this.con.prepareStatement(query);
+            pst.setInt(1,user);
+            rs=pst.executeQuery();
+            while(rs.next()) {
+            	ordine.setId(rs.getInt("id"));
+            	ordine.setData(rs.getDate("data"));
+            	ordine.setUser(rs.getInt("user"));
+            	ordine.setIsBuy(rs.getBoolean("is_buy"));
+            }
+            return ordine;
+			
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+		return null;
+	}
+	
 	
 	
 	public boolean doDelete(int id) {

@@ -3,13 +3,9 @@ package entity.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import entity.model.Card;
 import entity.model.DettaglioOrdine;
-import entity.model.Ordine;
 import entity.model.OrdineCompleto;
 
 public class DettaglioOrdineDAO {
@@ -63,7 +59,6 @@ public class DettaglioOrdineDAO {
 	
 //	private Restituisce i dettagli ordini contenenti L'id dell'ordine preso in input
 	public ArrayList<DettaglioOrdine> searchDettaglioOrdineByOrdineId(int ordine_id) {
-		DettaglioOrdine dettOrd=new DettaglioOrdine();
 		ArrayList<DettaglioOrdine> dettagliOrdine= null;
 		try {
 			dettagliOrdine =new ArrayList<DettaglioOrdine>();
@@ -73,6 +68,7 @@ public class DettaglioOrdineDAO {
             rs=pst.executeQuery();
             
             while(rs.next()) {
+        		DettaglioOrdine dettOrd=new DettaglioOrdine();
             	dettOrd.setCappello(rs.getInt("cappello"));
             	dettOrd.setQuantita(rs.getInt("quantita"));
             	dettOrd.setOrdine(rs.getInt("ordine"));
@@ -155,6 +151,20 @@ public class DettaglioOrdineDAO {
             e.printStackTrace();
         }
 		return null;
+	}
+
+	public void updateQuantita(int quantita,int p_id, int ordine_id) {
+		try {
+            query="UPDATE DettaglioOrdine SET quantita=? WHERE ordine=? AND cappello=?";
+            pst=this.con.prepareStatement(query);
+            pst.setInt(1, quantita);
+            pst.setInt(2, ordine_id);
+            pst.setInt(3, p_id);
+            pst.executeUpdate();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+		
 	}
 	
 }
