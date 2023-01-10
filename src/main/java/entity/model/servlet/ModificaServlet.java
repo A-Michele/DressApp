@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import entity.connection.DbCon;
 import entity.dao.CappelloDao;
+import entity.model.Cappello;
 
 /**
  * Servlet implementation class ModificaServlet
@@ -38,26 +39,59 @@ public class ModificaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id=Integer.parseInt(request.getParameter("p_id"));
+		CappelloDao cDao=null;
+		Cappello c=null;
+		int id=0;
+		try {
+			cDao = new CappelloDao(DbCon.getConnection());
+			id=Integer.parseInt(request.getParameter("p_id"));
+			c=cDao.retriveProductById(id);
+			System.out.println(c);
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		String nome=request.getParameter("nomeP");
 		String desc=request.getParameter("descP");
-		double costo=Double.parseDouble(request.getParameter("costo"));
+		float costo=0;
+		if(!(request.getParameter("prezzo").equals(""))) {
+			System.out.println(costo);
+			costo=Float.parseFloat(request.getParameter("prezzo"));
+		}
 		String categoria=request.getParameter("cat");
 		String foto=request.getParameter("foto");
-		int dispo=Integer.parseInt(request.getParameter("disp"));
-		try {
-			CappelloDao pdao=new CappelloDao(DbCon.getConnection());
-			boolean b=pdao.updateProdotto(id,nome,desc,costo,categoria,foto,dispo);
-			if(b=true) {
+		int dispo=0;
+		if(!(request.getParameter("disp").equals(""))) dispo=Integer.parseInt(request.getParameter("disp"));
+		int change=0;
+		if(!(nome.equals(""))){
+			c.setNome(nome);
+			change=1;
+		}
+		if(!(desc.equals(""))) {
+			c.setDescrizione(desc);
+			change=1;
+		}
+		if(costo>0) {
+			c.setPrezzo(costo);
+			change=1;
+		}
+		if(!(categoria.equals(""))) {
+			c.setCategoria(categoria);
+			change=1;
+		}
+		if(!(foto.equals(""))) {
+			c.setFoto(foto);
+		}
+		if(dispo>0) {
+			if(change==0) {
+				cDao.updateDisp(id,dispo);
 				response.sendRedirect("ProdottiAdmin.jsp");
 			}
-			else {
-				System.out.println("Errore update");
-			}
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			c.setDisp(dispo);
 		}
+		cDao.insertProduct(c.getNome(),c.getDescrizione(),c.getPrezzo(),c.getCategoria(),c.getFoto(),c.getDisp());
+		response.sendRedirect("ProdottiAdmin.jsp");
 		
 	}
 

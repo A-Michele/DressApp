@@ -46,10 +46,10 @@ public class LoginServlet extends HttpServlet {
 					//System.out.println("is admin:"+user.getIsAdmin());
 					if(user.getIsAdmin()==1) {
 						request.getSession().setAttribute("auth", user);
-						response.sendRedirect("ProdottiAdmin.jsp");
+						response.sendRedirect("show-products");
 					}else {			
 						request.getSession().setAttribute("auth", user);
-						response.sendRedirect("index.jsp");
+						response.sendRedirect("show-products");
 					}
 				}
 			} catch (ClassNotFoundException | SQLException e) {
