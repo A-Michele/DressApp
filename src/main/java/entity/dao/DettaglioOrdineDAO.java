@@ -3,6 +3,7 @@ package entity.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import entity.model.DettaglioOrdine;
@@ -166,6 +167,25 @@ public class DettaglioOrdineDAO {
 		return -1;
 	}
 
+	public void removeById(int p_id, int o_id) {
+		query="DELETE FROM dettaglioordine WHERE cappello=? AND ordine=?";
+		 try {
+			pst=this.con.prepareStatement(query);
+			pst.setInt(1,p_id);
+			pst.setInt(2,o_id);
+			pst.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	
+		
+			 
+
+	
 	
 		
 		

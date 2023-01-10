@@ -29,11 +29,13 @@ public class decServlet extends HttpServlet {
 			User auth=(User) request.getSession().getAttribute("auth");
 			int o_id=(int) request.getSession().getAttribute("o_id");
 			ArrayList<DettaglioOrdine> list=(ArrayList<DettaglioOrdine>) request.getSession().getAttribute("listDettaglio");
-			
-			//controllo con quantita=1
 				DettaglioOrdineDAO dtDao=new DettaglioOrdineDAO(DbCon.getConnection());
+				if((dtDao.getQuantita(p_id, o_id)==1)) {
+					response.sendRedirect("removeCart?p_id="+p_id);
+				}else {
 				dtDao.updateQuantita((dtDao.getQuantita(p_id, o_id))-1,p_id,o_id);
 				response.sendRedirect("cart.jsp");
+			}
 			} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

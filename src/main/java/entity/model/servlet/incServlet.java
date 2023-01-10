@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entity.connection.DbCon;
+import entity.dao.CappelloDao;
 import entity.dao.DettaglioOrdineDAO;
+import entity.model.Cappello;
 import entity.model.DettaglioOrdine;
 import entity.model.User;
 
@@ -27,11 +29,19 @@ public class incServlet extends HttpServlet {
 			User auth=(User) request.getSession().getAttribute("auth");
 			int o_id=(int) request.getSession().getAttribute("o_id");
 			ArrayList<DettaglioOrdine> list=(ArrayList<DettaglioOrdine>) request.getSession().getAttribute("listDettaglio");
-			//controllo disponibilità massima
-				DettaglioOrdineDAO dtDao=new DettaglioOrdineDAO(DbCon.getConnection());
-				dtDao.updateQuantita((dtDao.getQuantita(p_id, o_id))+1,p_id,o_id);
+			DettaglioOrdineDAO dtDao=new DettaglioOrdineDAO(DbCon.getConnection());
+			CappelloDao cdao=new CappelloDao(DbCon.getConnection());
+			Cappello c=cdao.retriveProductById(p_id);
+			if((dtDao.getQuantita(p_id, o_id)>=c.getDisp())){
+				getServletContext().setAttribute("errorIncrement",  "errorIncrement");
 				response.sendRedirect("cart.jsp");
-			} catch (ClassNotFoundException e) {
+				return;
+			}
+			else {
+				dtDao.updateQuantita((dtDao.getQuantita(p_id, o_id))+1,p_id,o_id);	
+				response.sendRedirect("cart.jsp");
+			}
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
