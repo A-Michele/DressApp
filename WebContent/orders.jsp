@@ -1,19 +1,11 @@
-Michele_A
-#5602
-
-joseluis — Oggi alle 11:58
-orders.jsp
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="entity.connection.DbCon" %>
 <%@page import="entity.model.*" %>
 <%@page import="entity.dao.*" %>
 <%@page import="java.text.DecimalFormat"%>
-Mostra
-message.txt
-4 KB
 <li class="nav-item"><a class="nav-link" href="orders.jsp">Orders</a></li>
-joseluis#1874
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="entity.connection.DbCon" %>
@@ -126,5 +118,4 @@ document.documentElement.scrollTop = 0;
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-message.txt
-4 KB
+
