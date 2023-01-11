@@ -58,19 +58,16 @@ public class CardDAO {
 			 
 	}
 	
-	
 	public boolean insertCard(String proprietario,String numeroCarta,String dataScadenza,int cvv, int user) {
-		Card p= new Card(); // Creo la card per fargli generare automaticamente l'id corretto da inserire nella query
         try {
-            query="INSERT INTO Cappello(id,proprietario,numeroCarta,dataScadenza,cvv,user)"
-            		+ " VALUES(?,?,?,?,?,?,?,?)";
+            query="INSERT INTO Card(proprietario,numero_carta,data_scadenza,cvv,user)"
+            		+ " VALUES(?,?,?,?,?)";
             pst=this.con.prepareStatement(query);
-            pst.setInt(1, p.getId());
-            pst.setString(2, proprietario);
-            pst.setString(3, numeroCarta);
-            pst.setString(4, dataScadenza);
-            pst.setInt(5, cvv);
-            pst.setInt(6, user);
+            pst.setString(1, proprietario);
+            pst.setString(2, numeroCarta);
+            pst.setString(3, dataScadenza);
+            pst.setInt(4, cvv);
+            pst.setInt(5, user);
             pst.executeUpdate();
             return true;
         }
@@ -79,7 +76,7 @@ public class CardDAO {
             }
         return false;
 	}
-	
+		
 	public Card retriveCardById(int card_id) {
 		Card p=new Card();
 		try {
