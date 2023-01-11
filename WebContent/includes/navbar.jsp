@@ -1,6 +1,6 @@
 <%@page import="entity.model.*"%>
 
-<nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar navbar-expand-lg bg-dark">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="show-products"><img src="product-images/logo.jpg" alt="logo" width="10%" height="10px" class="logo"></a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -12,21 +12,22 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item active"><a class="nav-link"
-					href="show-products">Home</a></li>
+					href="show-products" style="color:white">Home</a></li>
 					
-				<li class="nav-item"><a class="nav-link" href="cart.jsp">Cart<span class="badge bage-danger px-2">${ cart_list.size() }</span></a></li>
+				<li class="nav-item"><a class="nav-link" href="cart.jsp" style="color:white">Carrello<span class="badge bage-danger px-2">${ cart_list.size() }</span></a></li>
 				<%User auth1=(User)request.getSession().getAttribute("auth");
 				  if(auth1==null){%>
-					  <li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
+					  <li class="nav-item active"><a style="color:white" class="nav-link"
+					href="login.jsp" >Login</a></li>
 				<%}else{
 					if(auth1.getIsAdmin()==1){ %>
 					
-					<li class="nav-item"><a class="nav-link" href="orders.jsp">Orders</a></li>
-					<li class="nav-item"><a class="nav-link" href="admin.jsp">Ordini Degli Utenti</a></li>
-					<li class="nav-item"><a class="nav-link" href="ProdottiAdmin.jsp">Modifica Prodotti</a><li>
+					<li class="nav-item"  ><a class="nav-link" style="color:white" href="orders.jsp">Ordini</a></li>
+					<li class="nav-item"  ><a class="nav-link" style="color:white" href="admin.jsp">Ordini Degli Utenti</a></li>
+					<li class="nav-item"  ><a class="nav-link" style="color:white" href="ProdottiAdmin.jsp">Modifica Prodotti</a><li>
 					
 					
-					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					<li class="nav-item dropdown"><a style="color:white" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
 					Ciao <%=auth1.getName()%></a>
 					
 					<ul class="dropdown-menu">
@@ -37,9 +38,9 @@
 					</li>
 					
 				<%}else if(auth1.getIsGuest()==0){%>
-					<li class="nav-item"><a class="nav-link" href="orders.jsp">Orders</a></li>
+					<li class="nav-item"><a class="nav-link" href="orders.jsp" style="color:white">Orders</a></li>
 					
-					 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					 <li class="nav-item dropdown"><a style="color:white" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 					Ciao <%=auth1.getName()%></a>
 					
 					<ul class="dropdown-menu">
@@ -49,7 +50,7 @@
           			
 					</li>
 				<%}else{%>
-					<li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
+					<li class="nav-item"><a style="color:white" class="nav-link" href="login.jsp">Login</a></li>
 				<%}}%>
 			</ul>
 		</div>
