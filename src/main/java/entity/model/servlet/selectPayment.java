@@ -1,12 +1,16 @@
 package entity.model.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entity.connection.DbCon;
+import entity.dao.OrderDao;
 import entity.model.Ordine;
 
 /**
@@ -29,16 +33,16 @@ public class selectPayment extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			Ordine ordine = request.getAttribute("ordine");
-			OrderDao oDao = newOrderDao(Dbcon.getConnection());
-			boolean x = oDao.changeState(ordine.getId());
+			int o_id = Integer.parseInt(request.getParameter("o_id"));
+			OrderDao oDao = new OrderDao(DbCon.getConnection());
+			boolean x = oDao.changeState(o_id);
 			if(x==true) {
-				window.alert("Ordine effettuato");
-				response.sendRedirect("index.jsp");
+				response.sendRedirect("cart.jsp");
 		}
-			else out.print("Errore");
+			else System.out.println("Errore");
 		
-		}catch (ClassNotFoundException | SQLException e) {
+		}
+		catch (ClassNotFoundException | SQLException e) {
 	            e.printStackTrace();
 		}
 	}
