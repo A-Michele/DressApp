@@ -10,31 +10,33 @@
 		request.setAttribute("dcf", dcf);
 		
 		User auth =(User) request.getSession().getAttribute("auth");
-		if(auth!=null){
-			request.setAttribute("auth",auth);
+		if (auth != null) {
+			request.setAttribute("auth", auth);
 		}else{
 			auth=new User();
+			auth.setIsGuest(1);
+			request.getSession().setAttribute("auth", auth);
 		}
-		CappelloDao pDao = new CappelloDao(DbCon.getConnection());
-		CartDao cDao=new CartDao(DbCon.getConnection());
-		ArrayList<Cart> cart_list = cDao.retriveOrdersPerUser(auth.getId());
-		ArrayList<Cart> carrello=new ArrayList<Cart>();
-		for(Cart c:cart_list){
-			Cart c1=pDao.completeCart(c);
-			carrello.add(c1);
-		}
+		DettaglioOrdineDAO dettDao = new DettaglioOrdineDAO(DbCon.getConnection());
+		OrderDao oD= new OrderDao(DbCon.getConnection());
+		ArrayList<Ordine> ordiniUtente= oD.getOrdersByUser(auth.getId());
+	
+		
 	%>
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <meta charset="UTF-8">
-<title>ORDERS</title>
+
+<link rel="icon" href="product-images/logo.jpg" type="image/jpg"> 
+<title>DressApp - Ordini Utente</title>
 <%@ include file="includes/header.jsp" %>
 </head>
 <body>
 	<%@ include file="includes/navbar.jsp"%>
 
-<%@ include file="includes/footer.jsp" %>
+
 </body>
 	<div class="container">
 		<table class="table table-loght">
@@ -45,33 +47,66 @@
 					<th scope="col">Prezzo</th>
 					<th scope="col">Quantita'</th>
 					<th scope="col">Data</th>
-					<th scope="col">Compra di nuovo</th>
 				</tr>
 			</thead>
 			<tbody>
 				<%
-				if (carrello != null) {
-					for (Cart c : carrello) {
+				if (ordiniUtente != null) {
+					for (Ordine o : ordiniUtente) {
+						ArrayList<OrdineCompleto> oC= dettDao.searchOrdiniCompleti(o.getId());
+						for(OrdineCompleto oc: oC){
 				%>
 				<tr>
-					<td><%=c.getNome()%></td>
-					<td><%=c.getCategoria()%></td>
-					<td><%=dcf.format(c.getPrezzo())%></td>
-					<td><%=c.getQuantita()%></td>
-					<td><%=c.getData()%></td>
-					<td>
-						<form action="add-to-cart" method="get">
-							<input type="hidden" name="u_id" value="<%= c.getId_utente() %>">
-							<input type="hidden" name="p_id" value="<%= c.getId_prodotto() %>">
-							<input type="submit" class="btn btn-primary" value="Buy again">								
-						</form>
-					</td>
+					<td><%=oc.getNomeC()%></td>
+					<td><%=oc.getCategoria()%></td>
+					<td><%=dcf.format(oc.getPrezzo())%></td>
+					<td><%=oc.getQuantita()%></td>
+					<td><%=oc.getData()%></td>
+					
 				</tr>
-				<%
-					}
-				}
-				%>				
+				
+				
+				<% } %>
+					<tr><td colspan=5>
+					<hr style="width:100%;height:5px;background-color:#404040;"></td></tr>	
+				<%} }%>
+				
+							
 			</tbody>
 		</table>
 	</div>
+	
+					
+	<button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top" style="position: fixed;bottom: 20px;
+        right: 20px;display: none;">
+          <i class="fas fa-arrow-up"></i>
+        </button>
+		<%@ include file="includes/footer.jsp"%>
+	<script type="text/javascript">
+//Get the button
+let mybutton = document.getElementById("btn-back-to-top");
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function () {
+scrollFunction();
+};
+function scrollFunction() {
+if (
+document.body.scrollTop > 20 ||
+document.documentElement.scrollTop > 20
+) {
+mybutton.style.display = "block";
+} else {
+mybutton.style.display = "none";
+}
+}
+// When the user clicks on the button, scroll to the top of the document
+mybutton.addEventListener("click", backToTop);
+function backToTop() {
+document.body.scrollTop = 0;
+document.documentElement.scrollTop = 0;
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

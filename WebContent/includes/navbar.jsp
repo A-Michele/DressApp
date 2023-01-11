@@ -21,6 +21,7 @@
 				<%}else{
 					if(auth1.getIsAdmin()==1){ %>
 					
+					<li class="nav-item"><a class="nav-link" href="orders.jsp">Orders</a></li>
 					<li class="nav-item"><a class="nav-link" href="admin.jsp">Ordini Degli Utenti</a></li>
 					<li class="nav-item"><a class="nav-link" href="ProdottiAdmin.jsp">Modifica Prodotti</a><li>
 					
