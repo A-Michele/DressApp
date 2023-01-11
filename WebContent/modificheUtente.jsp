@@ -16,7 +16,8 @@
 <%@ include file="includes/header.jsp"%>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <meta charset="ISO-8859-1">
-<title>Modifiche Utente</title>
+<link rel="icon" href="product-images/logo.jpg" type="image/jpg">  
+<title>DressApp - Modifiche Utente</title>
 </head>
 
 <body>
