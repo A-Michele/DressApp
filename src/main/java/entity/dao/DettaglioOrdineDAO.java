@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import entity.model.Card;
 import entity.model.DettaglioOrdine;
 import entity.model.Ordine;
 import entity.model.OrdineCompleto;
@@ -63,7 +61,6 @@ public class DettaglioOrdineDAO {
 	
 //	private Restituisce i dettagli ordini contenenti L'id dell'ordine preso in input
 	public ArrayList<DettaglioOrdine> searchDettaglioOrdineByOrdineId(int ordine_id) {
-		DettaglioOrdine dettOrd=new DettaglioOrdine();
 		ArrayList<DettaglioOrdine> dettagliOrdine= null;
 		try {
 			dettagliOrdine =new ArrayList<DettaglioOrdine>();
@@ -73,6 +70,7 @@ public class DettaglioOrdineDAO {
             rs=pst.executeQuery();
             
             while(rs.next()) {
+        		DettaglioOrdine dettOrd=new DettaglioOrdine();
             	dettOrd.setCappello(rs.getInt("cappello"));
             	dettOrd.setQuantita(rs.getInt("quantita"));
             	dettOrd.setOrdine(rs.getInt("ordine"));
@@ -133,28 +131,55 @@ public class DettaglioOrdineDAO {
 	 * }catch(Exception e){ e.printStackTrace(); } return null; }
 	 */
 
-//	private Restituisce i dettagli ordini contenenti L'id dell'user preso in input
-	public ArrayList<DettaglioOrdine> searchDettaglioOrdineByUserId(int user_id) {
-		DettaglioOrdine dettOrd=new DettaglioOrdine();
-		ArrayList<DettaglioOrdine> dettagliOrdine= new ArrayList<DettaglioOrdine>();
-		try {
 
-            query="SELECT * from DettaglioOrdine where user=?";
+
+	public void updateQuantita(int quantita,int p_id, int ordine_id) {
+		try {
+            query="UPDATE DettaglioOrdine SET quantita=? WHERE ordine=? AND cappello=?";
             pst=this.con.prepareStatement(query);
-            pst.setInt(1, user_id);
-            rs=pst.executeQuery();
-            while(rs.next()) {
-            	dettOrd.setCappello(rs.getInt("cappello"));
-            	dettOrd.setQuantita(rs.getInt("quantita"));
-            	dettOrd.setOrdine(rs.getInt("ordine"));
-            	dettagliOrdine.add(dettOrd);
-            }
-            return dettagliOrdine;
-			
+            pst.setInt(1, quantita);
+            pst.setInt(2, ordine_id);
+            pst.setInt(3, p_id);
+            pst.executeUpdate();
         }catch(Exception e){
             e.printStackTrace();
         }
-		return null;
+		
 	}
 	
-}
+	public int getQuantita(int p_id, int o_id) {
+		DettaglioOrdine dOrdine=new DettaglioOrdine();
+		
+		try {
+            query="SELECT quantita from DettaglioOrdine where cappello=? AND ordine=?";
+            pst=this.con.prepareStatement(query);
+            pst.setInt(1,p_id);
+            pst.setInt(2,o_id);
+            rs=pst.executeQuery();
+            while(rs.next()) {
+            	dOrdine.setQuantita(rs.getInt("quantita"));
+            }
+            	return dOrdine.getQuantita();
+           
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+		return -1;
+	}
+
+	public void removeById(int p_id, int o_id) {
+		query="DELETE FROM dettaglioordine WHERE cappello=? AND ordine=?";
+		 try {
+			pst=this.con.prepareStatement(query);
+			pst.setInt(1,p_id);
+			pst.setInt(2,o_id);
+			pst.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+		
+	}
