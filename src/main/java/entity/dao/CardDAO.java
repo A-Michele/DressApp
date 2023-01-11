@@ -25,7 +25,7 @@ public class CardDAO {
 	public ArrayList<Card> getAllCards(int card_user){
 		ArrayList<Card> cards=new ArrayList<Card>();
 		try {
-			query="SELECT * FROM user WHERE user=" + card_user;
+			query="SELECT * FROM Card WHERE user=" + card_user;
 			//Connection c = DbCon.getConnection();
 			pst=this.con.prepareStatement(query);
 			rs=pst.executeQuery();
@@ -33,16 +33,17 @@ public class CardDAO {
 				Card row=new Card();
 				row.setId(rs.getInt("id"));
 				row.setProprietario(rs.getString("proprietario"));
-				row.setNumeroCarta(rs.getString("numeroCarta"));
-				row.setDataScadenza(rs.getString("dataScadenza"));
+				row.setNumeroCarta(rs.getString("numero_carta"));
+				row.setDataScadenza(rs.getString("data_scadenza"));
 				row.setCvv(rs.getInt("cvv"));
 				row.setUser(rs.getInt("user"));
 				cards.add(row);
 			}
+			return cards;
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return cards;
+		return null;
 	}
 	
 	
@@ -60,17 +61,15 @@ public class CardDAO {
 	
 	
 	public boolean insertCard(String proprietario,String numeroCarta,String dataScadenza,int cvv, int user) {
-		Card p= new Card(); // Creo la card per fargli generare automaticamente l'id corretto da inserire nella query
         try {
-            query="INSERT INTO Cappello(id,proprietario,numeroCarta,dataScadenza,cvv,user)"
-            		+ " VALUES(?,?,?,?,?,?,?,?)";
+            query="INSERT INTO Card(proprietario,numero_carta,data_scadenza,cvv,user)"
+            		+ " VALUES(?,?,?,?,?)";
             pst=this.con.prepareStatement(query);
-            pst.setInt(1, p.getId());
-            pst.setString(2, proprietario);
-            pst.setString(3, numeroCarta);
-            pst.setString(4, dataScadenza);
-            pst.setInt(5, cvv);
-            pst.setInt(6, user);
+            pst.setString(1, proprietario);
+            pst.setString(2, numeroCarta);
+            pst.setString(3, dataScadenza);
+            pst.setInt(4, cvv);
+            pst.setInt(5, user);
             pst.executeUpdate();
             return true;
         }
