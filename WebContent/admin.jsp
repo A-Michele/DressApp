@@ -1,27 +1,17 @@
-Michele_A
-#5602
-
-joseluis — Oggi alle 11:58
-orders.jsp
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="entity.connection.DbCon" %>
 <%@page import="entity.model.*" %>
 <%@page import="entity.dao.*" %>
 <%@page import="java.text.DecimalFormat"%>
-Mostra
-message.txt
-4 KB
-Admin.jsp
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="entity.connection.DbCon"%>
 <%@page import="entity.model.*"%>
 <%@page import="entity.dao.*"%>
 <%@page import="java.util.ArrayList"%>
-Mostra
-message.txt
-6 KB
+
 public ArrayList<Ordine> getOrdersByUser(int user){
         ArrayList<Ordine> lista= new ArrayList<Ordine>();
 
@@ -46,7 +36,7 @@ public ArrayList<Ordine> getOrdersByUser(int user){
         return null;
     }
 <li class="nav-item"><a class="nav-link" href="orders.jsp">Orders</a></li>
-joseluis#1874
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="entity.connection.DbCon"%>
@@ -245,5 +235,3 @@ document.documentElement.scrollTop = 0;
 	</body>
 	
 </html>
-message.txt
-6 KB
