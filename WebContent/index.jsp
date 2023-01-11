@@ -68,7 +68,7 @@ ArrayList<Cappello> product_list = (ArrayList<Cappello>) request.getAttribute("s
                                 	<input type="hidden" name="u_id" value="<%= auth.getId() %>">
                                 	<%} %>
                                 	<input type="hidden" name="p_id" value="<%= p.getId() %>">
-                                	<input type="submit" class="btn btn-primary" value="Add to cart">
+                                	<input type="submit" class="btn btn-primary" style="background: #404040;border:#404040" value="Add to cart">
                             </form>
 								</div>
 							</div>
