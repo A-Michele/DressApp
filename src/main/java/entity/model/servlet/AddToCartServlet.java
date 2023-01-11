@@ -2,6 +2,7 @@ package entity.model.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -21,72 +22,50 @@ import javax.servlet.http.HttpSession;
 public class AddToCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		OrderDao oDao=null;
+		Ordine ordine= null;
+		DettaglioOrdine dettaglio = null;
+		DettaglioOrdineDAO dDao= null;
+		
 		response.setContentType("text/html;charset=UTF-8");
-		boolean result;
 		try (PrintWriter out=response.getWriter()){
+			oDao=new OrderDao(DbCon.getConnection());
+			dDao=new DettaglioOrdineDAO(DbCon.getConnection());
 			User auth=(User) request .getSession().getAttribute("auth");
-			//Guest guest=(Guest) request .getSession().getAttribute("guest");
-			int p_id= Integer.parseInt(request.getParameter("p_id"));
-			if(auth!=null && auth.getIsGuest()==0) {
-				System.out.println(auth);
-				CartDao cDao=new CartDao(DbCon.getConnection());
-				result=cDao.AddToCart(auth.getId(), p_id);
-				if(result) {
-					response.sendRedirect("show-products");
-				}else {
-					out.print("Error in adding..,");
-				}
-			}
-			else {
+			if(auth.getIsGuest()==1) {
 				response.sendRedirect("login.jsp");
+				return;
 			}
-			/*
+			int p_id= Integer.parseInt(request.getParameter("p_id"));
+			ordine= oDao.doRetriveByIdBuy(auth.getId());
+			if(ordine.getId()==0) {
+				ordine=new Ordine(new Date(System.currentTimeMillis()),auth.getId(),false);
+				oDao.doSave(ordine.getDate(),ordine.getUser(), ordine.getIsBuy());
+				int ID=oDao.idGrande();
+				dettaglio= new DettaglioOrdine(p_id,1,ID);
+				dDao.insertDettaglioOrdine(dettaglio.getCappello(), 1, dettaglio.getOrdine());
+			}
 			else {
-				if(guest!=null) {
-					CartDao cDao=new CartDao(DbCon.getConnection());
-					result=cDao.AddToCartAsGuest(guest.getId(), p_id);
-					if(result) {
+				ArrayList<DettaglioOrdine> lista=dDao.searchDettaglioOrdineByOrdineId(ordine.getId());
+				System.out.println(lista);
+				for( int i=0; i<lista.size();i++) {
+					DettaglioOrdine x = lista.get(i);
+					if(x.getCappello()==p_id) {
+						dDao.updateQuantita(x.getQuantita()+1,p_id,ordine.getId());
 						response.sendRedirect("index.jsp");
-					}else {
-						out.print("Error in adding as guest..,");
+						return;
 					}
-				}else {
-					//System.out.println(guest);
-					//System.out.println(auth);
-					response.sendRedirect("login.jsp");
 				}
+				dettaglio= new DettaglioOrdine(p_id,1,ordine.getId());
+				dDao.insertDettaglioOrdine(dettaglio.getCappello(), dettaglio.getQuantita(), dettaglio.getOrdine());
+				
 			}
-			*/
+			response.sendRedirect("index.jsp");
+			
 		}catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		/*int p_id=Integer.parseInt(request.getParameter("p_id"));
-		
-		if(request.getParameter("u_id")==null) {
-			if(request.getParameter("cookie_id")==null) {
-				GuestDao gdao;
-				try {
-					gdao = new GuestDao(DbCon.getConnection());
-					Cookie c=new Cookie("guest_id",gdao.getNewId()+"");
-					response.addCookie(c);
-				} catch (ClassNotFoundException | SQLException e) {
-					e.printStackTrace();
-				}
-				response.sendRedirect("index.jsp");
-			}			
-		}
-		else {
-			int u_id=Integer.parseInt(request.getParameter("u_id"));
-			try(PrintWriter out=response.getWriter()){
-				CartDao cdao=new CartDao(DbCon.getConnection());
-				cdao.AddToCart(u_id, p_id);
-				response.sendRedirect("index.jsp");
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}*/
 	}
 
 }
