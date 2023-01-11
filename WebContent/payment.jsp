@@ -26,7 +26,7 @@
 
 	<div class="container">
 		<div class="card w-50 mx-auto my-5">
-			<div class="card-header text-center">Dati carta</div>
+			<div class="card-header text-center" style="background: #404040;border:#404040;color:white">Dati carta</div>
 			<div class="card-body">
 				<form action="payment" method="post">
 					<div class="form-group">
@@ -52,7 +52,7 @@
 					</div>
 					
 					<div class="text-center">
-						<button type="submit" class="btn btn-primary">Aggiungi</button>
+						<button type="submit" class="btn btn-primary" style="background: #404040;border:#404040;">Aggiungi</button>
 					</div>
 				</form>
 			</div>
