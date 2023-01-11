@@ -33,32 +33,35 @@
 
 	<div class="container">
 		<div class="card w-50 mx-auto my-5">
-			<div class="card-header text-center">Gestione metodi di pagamento</div>
+			<div class="card-header text-center" style="background: #404040;border:#404040;color:white;">Gestione metodi di pagamento</div>
 			<div class="card-body">
-				<% for(Card p: card_list){ %>
+			<table>
+				<% for(Card p: card_list){ %><tr>
 					<div class="form-group">
-						<label><%= p.getNumeroCarta() %></label>
-						<form action="selectPayment" method="post">
+						<td>&emsp;&emsp;&emsp;<td><h5><label><%= p.getNumeroCarta() %></label></h5></td><td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<td>
+						<td><form action="selectPayment" method="post">
 							<input type="hidden" name="o_id" value="<%= o_id %>">
-							<button type="submit" class="btn btn-primary" name="Scegli">Scegli</button>
-						</form>
-						<form action="deleteServlet" method="post">
+							<button type="submit" class="btn btn-primary" name="Scegli" style="background: #404040;border:#404040">Scegli</button>
+						</form></td>
+						<td><form action="deleteServlet" method="post"><td>&emsp;<td>
 							<input type="hidden" name="c_id" value="<%= p.getId() %>">
-							<button type="submit" class="btn btn-primary" name="Elimina">X</button>
-						</form>
-					</div>
+							<button type="submit" class="btn btn-primary" name="Elimina" style="background: #404040;border:#404040">X</button>
+						</form></td>
+					</div></tr>
 				<% } %>
+				</table><br>
 				<form action="payment.jsp" method="post">
 					<div class="text-center">
 						<input type="hidden" name="auth_id" value="<%= auth.getId() %>">
 						<!-- Se inserito vanno messe le parentesi angolate con il percentuale -->
-						<button type="submit" class="btn btn-primary" name="aggiungiMetodoDiPagamento">Aggiungi metodo di pagamento</button>
+						<button type="submit" class="btn btn-primary" name="aggiungiMetodoDiPagamento" style="background: #404040;border:#404040">Aggiungi metodo di pagamento</button>
 					</div>
 				</form>
 			</div>
 		</div>	
-	</div>
+	</div><br><br><br><br><br><br>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>	
 	<%@ include file="includes/footer.jsp"%>
 </body>
 </html>
+
