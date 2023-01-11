@@ -23,16 +23,15 @@ public class PaymentServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
-		boolean result;
 		try(PrintWriter out=response.getWriter()){
 			String proprietario=request.getParameter("payment-proprietario");//i nomi che passiamo alla get parameter sono quelli contenuti nel tag name all'interno del file jsp
 			String num=request.getParameter("payment-num");
-			int cvi=Integer.parseInt(request.getParameter("payment-cvi"));
+			int cvv=Integer.parseInt(request.getParameter("payment-cvv"));
 			String scadenza=request.getParameter("payment-scadenza");
 			User auth=(User) request .getSession().getAttribute("auth");
 			try {
 				CardDAO pdao=new CardDAO(DbCon.getConnection());
-				result=pdao.insertCard(proprietario,num,scadenza,cvi,auth.getId());
+				boolean result = pdao.insertCard(proprietario,num,scadenza,cvv,auth.getId());
 				if(result) {
 					response.sendRedirect("sceltaPagamento.jsp");
 				}else {
