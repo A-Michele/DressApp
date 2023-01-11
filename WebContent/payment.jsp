@@ -4,21 +4,25 @@
 <%@page import="java.util.ArrayList" %>
 	<%
 	User auth =(User) request.getSession().getAttribute("auth");
-	if(auth!=null){
-		request.setAttribute("auth",auth);
+	if (auth != null) {
+		request.setAttribute("auth", auth);
 	}else{
 		auth=new User();
+		auth.setIsGuest(1);
+		request.getSession().setAttribute("auth", auth);
 	}
 	%>
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <meta charset="UTF-8">
-<title>Transition</title>
+<link rel="icon" href="product-images/logo.jpg" type="image/jpg">
+<title>DressApp - Aggiungi Pagamento</title>
 <%@ include file="includes/header.jsp"%>
 </head>
 <body>
-
+<%@ include file="includes/navbar.jsp"%>
 
 	<div class="container">
 		<div class="card w-50 mx-auto my-5">
@@ -38,23 +42,23 @@
 					
 					<div class="form-group">
 						<label>Data di scadenza</label> <input type="text"
-							class="form-control" name="payment-scadenza" placeholder="--/--/----"
+							class="form-control" name="payment-scadenza" placeholder="--/----"
 							required>
 					</div>
 					<div class="form-group">
-						<label>CVI</label> <input type="text"
-							class="form-control" name="payment-cvi" placeholder="***"
+						<label>CVV</label> <input type="text"
+							class="form-control" name="payment-cvv" placeholder="***"
 							required>
 					</div>
 					
 					<div class="text-center">
-						<button type="submit" class="btn btn-primary">Pay</button>
+						<button type="submit" class="btn btn-primary">Aggiungi</button>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
-
-	<%@ include file="includes/footer.jsp"%>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+	<br><br><%@ include file="includes/footer.jsp"%>
 </body>
 </html>
