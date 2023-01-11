@@ -90,15 +90,13 @@ public class OrderDao {
 	
 	
 	public void doSave(Date data, int user, boolean is_buy) {
-		Ordine ordine= new Ordine();
 		try {
-            query="INSERT INTO Ordine(id,data,user,is_buy)"
-            		+ " VALUES(?,?,?,?)";
+            query="INSERT INTO Ordine(data,user,is_buy)"
+            		+ " VALUES(?,?,?)";
             pst=this.con.prepareStatement(query);
-            pst.setInt(1, 0);
-            pst.setDate(2, data);
-            pst.setInt(3, user);
-            pst.setBoolean(4, is_buy);
+            pst.setDate(1, data);
+            pst.setInt(2, user);
+            pst.setBoolean(3, is_buy);
             pst.executeUpdate();
         }
         catch(Exception e){
@@ -112,6 +110,27 @@ public class OrderDao {
             query="SELECT * from Ordine where id=?";
             pst=this.con.prepareStatement(query);
             pst.setInt(1,id);
+            rs=pst.executeQuery();
+            while(rs.next()) {
+            	ordine.setId(rs.getInt("id"));
+            	ordine.setData(rs.getDate("data"));
+            	ordine.setUser(rs.getInt("user"));
+            	ordine.setIsBuy(rs.getBoolean("is_buy"));
+            }
+            return ordine;
+			
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+		return null;
+	}
+	
+	public Ordine doRetriveByIdBuy(int user) {
+		Ordine ordine= new Ordine();
+		try {
+            query="SELECT * from Ordine where user=? AND is_buy=false";
+            pst=this.con.prepareStatement(query);
+            pst.setInt(1,user);
             rs=pst.executeQuery();
             while(rs.next()) {
             	ordine.setId(rs.getInt("id"));
@@ -182,5 +201,46 @@ public class OrderDao {
 		}catch(Exception e) {e.printStackTrace();}
 		return null;
 	}
+
+	public int idGrande() {
+		int x=0;
+		try {
+            query="SELECT MAX(id) AS i from Ordine";
+            rs=pst.executeQuery(query);
+            while(rs.next()) {
+            	x=rs.getInt("i");
+            }
+            return x;
+            }catch(Exception e) {
+            	e.printStackTrace();
+            }
+		return -1;
+	
+	}
+	public ArrayList<Ordine> getOrdersByUser(int user){
+        ArrayList<Ordine> lista= new ArrayList<Ordine>();
+
+        try {
+            query="SELECT * from Ordine where user=? AND is_buy=true";
+            pst=this.con.prepareStatement(query);
+            pst.setInt(1,user);
+            rs=pst.executeQuery();
+            while(rs.next()) {
+                Ordine ordine= new Ordine();
+                ordine.setId(rs.getInt("id"));
+                ordine.setData(rs.getDate("data"));
+                ordine.setUser(rs.getInt("user"));
+                ordine.setIsBuy(rs.getBoolean("is_buy"));
+                lista.add(ordine);
+            }
+            return lista;
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+	
+	
 	
 }
