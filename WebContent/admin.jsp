@@ -1,21 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="entity.connection.DbCon" %>
-<%@page import="entity.model.*" %>
-<%@page import="entity.dao.*" %>
-<%@page import="java.text.DecimalFormat"%>
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@page import="entity.connection.DbCon"%>
-<%@page import="entity.model.*"%>
-<%@page import="entity.dao.*"%>
-<%@page import="java.util.ArrayList"%>
-
-<li class="nav-item"><a class="nav-link" href="orders.jsp">Orders</a></li>
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%@page import="entity.connection.DbCon"%>
 <%@page import="entity.model.*"%>
 <%@page import="entity.dao.*"%>
