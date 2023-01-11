@@ -1,3 +1,52 @@
+Michele_A
+#5602
+
+joseluis — Oggi alle 11:58
+orders.jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@page import="entity.connection.DbCon" %>
+<%@page import="entity.model.*" %>
+<%@page import="entity.dao.*" %>
+<%@page import="java.text.DecimalFormat"%>
+Mostra
+message.txt
+4 KB
+Admin.jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@page import="entity.connection.DbCon"%>
+<%@page import="entity.model.*"%>
+<%@page import="entity.dao.*"%>
+<%@page import="java.util.ArrayList"%>
+Mostra
+message.txt
+6 KB
+public ArrayList<Ordine> getOrdersByUser(int user){
+        ArrayList<Ordine> lista= new ArrayList<Ordine>();
+
+        try {
+            query="SELECT * from Ordine where user=? AND is_buy=true";
+            pst=this.con.prepareStatement(query);
+            pst.setInt(1,user);
+            rs=pst.executeQuery();
+            while(rs.next()) {
+                Ordine ordine= new Ordine();
+                ordine.setId(rs.getInt("id"));
+                ordine.setData(rs.getDate("data"));
+                ordine.setUser(rs.getInt("user"));
+                ordine.setIsBuy(rs.getBoolean("is_buy"));
+                lista.add(ordine);
+            }
+            return lista;
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+<li class="nav-item"><a class="nav-link" href="orders.jsp">Orders</a></li>
+joseluis#1874
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="entity.connection.DbCon"%>
@@ -67,8 +116,8 @@ if(auth.getIsAdmin()!=0){
 <html>
 <head>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="icon" href="product-images/logo.jpg" type="image/jpg">  
 <meta charset="UTF-8">
+<link rel="icon" href="product-images/logo.jpg" type="image/jpg"> 
 <title>DressApp - Ordini Utenti</title>
 <%@ include file="includes/header.jsp"%>
 <body>
@@ -76,7 +125,6 @@ if(auth.getIsAdmin()!=0){
 		<%if(auth.getIsAdmin()!=1){ %>
 		<div class="container">
 			<h1>SPIACENTI MA NON PUOI VISUALIZZARE GLI ORDINI DEGLI UTENTI SE NON SEI ADMIN</h1>
-			<%response.sendRedirect("login.jsp"); %>
 		</div>
 		<%}else{%>
 	
@@ -120,12 +168,11 @@ if(auth.getIsAdmin()!=0){
 					<td><%=ordineCompleto.getData()%></td>
 				
 				</tr>
-				</tbody>
-				
-				
-				
-			<hr>
-			<%		}
+			<%		} %>
+			<tr><td colspan=5>
+					<hr style="width:100%;height:5px;background-color:#404040;"></td></tr>
+					</tbody>
+			<% 
 				}
 				}else if (ordini != null) {%>
 				<thead>
@@ -155,26 +202,27 @@ if(auth.getIsAdmin()!=0){
 					<td><%=o.getData()%></td>
 				
 				</tr>
-				<% }}%>				
+				<% }%>
+				<tr><td colspan=5>
+					<hr style="width:100%;height:5px;background-color:#404040;"></td></tr>
+				<% }%>				
 			</tbody>
 	</table>
-	<button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top" style="position: fixed;bottom: 20px;
-        right: 20px;display: none; background-color:blue;">
-          <i class="fas fa-arrow-up"></i>
-        </button>
 	</div>
 	
 	<% } %>
-	
-	<script type="text/javascript">
+	<button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top" style="position: fixed;bottom: 20px;
+        right: 20px;display: none;">
+          <i class="fas fa-arrow-up"></i>
+        </button>
+		<%@ include file="includes/footer.jsp"%>
+<script type="text/javascript">
 //Get the button
 let mybutton = document.getElementById("btn-back-to-top");
-
 // When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function () {
 scrollFunction();
 };
-
 function scrollFunction() {
 if (
 document.body.scrollTop > 20 ||
@@ -187,14 +235,15 @@ mybutton.style.display = "none";
 }
 // When the user clicks on the button, scroll to the top of the document
 mybutton.addEventListener("click", backToTop);
-
 function backToTop() {
 document.body.scrollTop = 0;
 document.documentElement.scrollTop = 0;
 }
-
-
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>	
-</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+	</body>
+	
 </html>
+message.txt
+6 KB
