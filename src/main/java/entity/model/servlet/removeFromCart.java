@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entity.connection.DbCon;
-import entity.dao.CartDao;
+import entity.dao.DettaglioOrdineDAO;
 import entity.dao.CappelloDao;
 import entity.model.User;
 
@@ -28,14 +28,10 @@ public class removeFromCart extends HttpServlet {
 		response.setContentType("txt/html;charset=UTF-8");
 		try(PrintWriter out=response.getWriter()){
 			int p_id= Integer.parseInt(request.getParameter("p_id"));
-			User auth=(User) request.getSession().getAttribute("auth");
-			if(p_id>0) {
-				CartDao cDao=new CartDao(DbCon.getConnection());
-				cDao.removeCart(p_id, auth.getId());
-				response.sendRedirect("cart.jsp");
-			}else {
-				response.sendRedirect("cart.jsp");
-			}
+			int o_id=(int) request.getSession().getAttribute("o_id");
+			DettaglioOrdineDAO dtDao=new DettaglioOrdineDAO(DbCon.getConnection());
+			dtDao.removeById(p_id, o_id);
+			response.sendRedirect("cart.jsp");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
