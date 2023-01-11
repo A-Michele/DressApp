@@ -8,8 +8,7 @@ public class Ordine {
 	private boolean isBuy;
 
 
-	public Ordine(int id, Date data, int user, boolean isBuy) {
-		this.id = id;
+	public Ordine(Date data, int user, boolean isBuy) {
 		this.data = data;
 		this.user = user;
 		this.isBuy = isBuy;
