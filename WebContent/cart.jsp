@@ -71,7 +71,7 @@ request.getSession().setAttribute("total", total);
 	<div class="container">
 		<div class="d-flex py-3">
 			<h3>Totale: &euro; ${ (total>0)?dcf.format(total):0 }</h3>
-			<a class="mx-3 btn btn-primary" href="check-out">Check out</a>
+			<a class="mx-3 btn btn-primary" href="check-out" style="background: #404040;border:#404040">Check out</a>
 			
 		</div>
 		<h6 style="text-align:right;"><%
