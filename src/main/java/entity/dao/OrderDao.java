@@ -217,4 +217,30 @@ public class OrderDao {
 		return -1;
 	
 	}
+	public ArrayList<Ordine> getOrdersByUser(int user){
+        ArrayList<Ordine> lista= new ArrayList<Ordine>();
+
+        try {
+            query="SELECT * from Ordine where user=? AND is_buy=true";
+            pst=this.con.prepareStatement(query);
+            pst.setInt(1,user);
+            rs=pst.executeQuery();
+            while(rs.next()) {
+                Ordine ordine= new Ordine();
+                ordine.setId(rs.getInt("id"));
+                ordine.setData(rs.getDate("data"));
+                ordine.setUser(rs.getInt("user"));
+                ordine.setIsBuy(rs.getBoolean("is_buy"));
+                lista.add(ordine);
+            }
+            return lista;
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+	
+	
+	
 }
