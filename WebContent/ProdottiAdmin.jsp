@@ -68,7 +68,7 @@ List<Cappello> products = pd.getAllProducts();
 					<img src="product-images/<%=p.getFoto() %>" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title"><%=p.getNome() %></h5>
-						<h6 class="price">Prezzo: <%=p.getPrezzo() %>$</h6>
+						<h6 class="price">Prezzo: <%=p.getPrezzo() %>&euro;</h6>
 						<h6 class="category">Categoria: <%=p.getCategoria() %></h6>
 						<h6 class="description">Dettagli: <%=p.getDescrizione() %></h6>
 						<div class="mt-3 d-flex float-right justify-content-between">
