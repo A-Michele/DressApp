@@ -23,6 +23,15 @@ if (auth != null) {
 <body>
 	<%@ include file="includes/navbar.jsp"%>
 	<div class="container">
+		 <%if(auth.getIsAdmin()!=1){ %>
+		<div class="container">
+			<h1>SPIACENTI MA NON PUOI INSERIRE PRODOTTI SE NON SEI ADMIN</h1>
+			<h3>Ti invitiamo a fare il Login altrimenti dai un'occhiata alla nostra home</h3>
+			<a class="mx-3 btn btn-primary" href="login.jsp" style="align:center;background: #404040;border:#404040">Login</a>
+			<a class="mx-3 btn btn-primary" href="show-products" style="align:center;background: #404040;border:#404040">Home</a>
+			
+		</div><br>
+		<%}else{%>
 		<div class="card w-50 mx-auto my-5">
 			<div class="card-header text-center" style="background: #404040;border:#404040;color:white">Inserimento nuovo prodotto</div>
 			<div class="card-body">
@@ -57,7 +66,7 @@ if (auth != null) {
 					</div>
 				</form>
 			</div>
-		</div>
+		</div><% } %>
 	</div>
 <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top" style="position: fixed;bottom: 20px;
         right: 20px;display: none;">
