@@ -31,7 +31,7 @@ public class AllOrdersServlet extends HttpServlet {
 		boolean result;
 		try (PrintWriter out=response.getWriter()){
 			User auth=(User) request .getSession().getAttribute("auth");
-			System.out.println("SERVLETTTT");
+			
 			String nome=request.getParameter("search");
 			try {
 				OrderDao od = new OrderDao(DbCon.getConnection());
