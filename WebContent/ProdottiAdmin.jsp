@@ -77,7 +77,7 @@ List<Cappello> products = pd.getAllProducts();
                                 <input type="hidden" name="u_id" value="<%= auth.getId() %>">
                                 <%} %>
                                 <input type="hidden" name="p_id" value="<%= p.getId() %>">
-                                <input type="submit" class="btn btn-primary" value="Remove" style="background: #404040;border:#404040">
+                                <input type="submit" class="btn btn-primary" value="Rimuovi" style="background: #404040;border:#404040">
                             	</form>
                             	&emsp;&emsp;&ensp;
                             <form action="reindirizzaServlet" method="get">
