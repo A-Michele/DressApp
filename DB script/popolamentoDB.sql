@@ -22,7 +22,7 @@ INSERT INTO Cappello VALUES(0,"Tommy Jeans","SPORT BEANIE UNISEX",21.99,"Inverna
 INSERT INTO Cappello VALUES(0,"Champion","BEANIE UNISEX",9.99,"Invernale","champion.jpg",50,false);
 INSERT INTO Cappello VALUES(0,"Calvin Klein CLASSIC","CLASSIC NO FOLD BEANIE UNISEX",34.99,"Invernale","ck.jpg",15,false);
 INSERT INTO Cappello VALUES(0,"Nike Performance","AERO ADVANTAGE VISOR",19.99,"Sport","nikeperformance.jpg",100,false);
-INSERT INTO Cappello VALUES(0,"Under Armour","ISOCHILL LAUNCH",11.99,"Sport","nikeperformance.jpg",100,false);
+INSERT INTO Cappello VALUES(0,"Under Armour","ISOCHILL LAUNCH",11.99,"Sport","underarmour.jpg",100,false);
 INSERT INTO Cappello VALUES(0,"The North Face SUN","SUN STASH HAT UNISEX",17.99,"Vintage","northfacevintage.jpg",40,false);
 INSERT INTO Cappello VALUES(0,"Gucci","Cappello da baseball con doppia visiera adidas x Gucci",550.00,"Luxory","gucci.jpg",1,false);
 INSERT INTO Cappello VALUES(0,"Off-White","Berretto nero con logo Off-White bianco sul davanti",99.99,"Luxory","offwhite.jpg",3,false);
