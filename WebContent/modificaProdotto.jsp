@@ -59,7 +59,7 @@
 							name="foto" placeholder="<%=p.getFoto()%>" >
 					</div>
 					<div class="form-group">
-						<label>Disponibilità</label> <input type=text class="form-control"
+						<label>Disponibilita'</label> <input type=text class="form-control"
 							name="disp" placeholder="<%=p.getDisp()%>" >
 					</div>
 					<input type="hidden" name="p_id" value="<%= p.getId() %>">
