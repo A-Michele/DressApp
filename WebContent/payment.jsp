@@ -25,6 +25,15 @@
 <%@ include file="includes/navbar.jsp"%>
 
 	<div class="container">
+		<%if(auth.getIsGuest()!=0){ %>
+		<div class="container">
+			<h1>SPIACENTI MA NON PUOI INSERIRE METODI DI PAGAMENTO SE NON SEI LOGGATO</h1>
+			<h3>Ti invitiamo a fare il Login altrimenti dai un'occhiata alla nostra home</h3>
+			<a class="mx-3 btn btn-primary" href="login.jsp" style="align:center;background: #404040;border:#404040">Login</a>
+			<a class="mx-3 btn btn-primary" href="show-products" style="align:center;background: #404040;border:#404040">Home</a>
+			
+		</div><br>
+		<%}else{%>
 		<div class="card w-50 mx-auto my-5">
 			<div class="card-header text-center" style="background: #404040;border:#404040;color:white">Dati carta</div>
 			<div class="card-body">
@@ -56,7 +65,7 @@
 					</div>
 				</form>
 			</div>
-		</div>
+		</div><% } %>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 	<br><br><%@ include file="includes/footer.jsp"%>
