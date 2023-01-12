@@ -37,6 +37,16 @@
 	<%@ include file="includes/navbar.jsp"%>
 
 	<div class="container">
+		<%if(auth.getIsGuest()!=0){ %>
+	<br>
+		<div class="container">
+			<h2>SPIACENTI MA NON PUOI VISUALIZZARE GLI ORDINI DI UN UTENTE SE NON SEI LOGGATO</h2>
+			<h3>Ti invitiamo a fare il Login altrimenti dai un'occhiata alla nostra home</h3>
+			<a class="mx-3 btn btn-primary" href="login.jsp" style="align:center;background: #404040;border:#404040">Login</a>
+			<a class="mx-3 btn btn-primary" href="show-products" style="align:center;background: #404040;border:#404040">Home</a>
+			
+		</div><br>
+		<%}else{%>
 		<table class="table table-loght">
 			<thead>
 				<tr>
@@ -67,7 +77,7 @@
 				<% } %>
 					<tr><td colspan=5>
 					<hr style="width:100%;height:5px;background-color:#404040;"></td></tr>	
-				<%} }%>
+				<%} } }%>
 				
 							
 			</tbody>
