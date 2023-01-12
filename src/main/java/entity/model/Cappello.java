@@ -11,7 +11,7 @@ public class Cappello {
 	private String foto;
 	private String descrizione;
 	private int disp;
-	private modificato boolean;
+	private boolean modificato;
 	
 
 	public Cappello(String nome, String cateogria, float prezzo, String foto, String descrizione, int disp) {
