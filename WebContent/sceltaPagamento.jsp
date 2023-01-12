@@ -32,6 +32,7 @@
 <%@ include file="includes/navbar.jsp"%>
 
 	<div class="container">
+		<%if(auth.getIsGuest()==1){%>
 			<div class="container">
 			<h1>SPIACENTI MA NON PUOI PAGARE SE NON SEI LOGGATO</h1>
 			<h3>Ti invitiamo a fare il Login altrimenti dai un'occhiata alla nostra home</h3>
