@@ -20,7 +20,7 @@ CREATE TABLE Cappello(
     categoria varchar(50),
     foto varchar(40),
     disponibilita int,
-    data_ultima_modifica date,
+    modificato boolean default false,
     PRIMARY KEY(id));
     
 CREATE TABLE Card(
