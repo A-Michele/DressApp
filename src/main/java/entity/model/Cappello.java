@@ -88,7 +88,7 @@ public class Cappello {
 	}
 	
 	public void setModificato(boolean modificato) {
-		this.modificatoa=modificato;
+		this.modificato=modificato;
 	}
 
 	@Override
