@@ -11,7 +11,7 @@ public class Cappello {
 	private String foto;
 	private String descrizione;
 	private int disp;
-	private Date data_ultima_modifica;
+	private modificato boolean;
 	
 
 	public Cappello(String nome, String cateogria, float prezzo, String foto, String descrizione, int disp) {
@@ -21,7 +21,7 @@ public class Cappello {
 		this.foto=foto;
 		this.descrizione=descrizione;
 		this.disp=disp;
-		data_ultima_modifica=new Date(System.currentTimeMillis());
+		this.modificato=false;
 	}
 
 	public Cappello() {
@@ -83,17 +83,17 @@ public class Cappello {
 		this.foto = img;
 	}
 	
-	public Date getDataUltimaModifica() {
-		return data_ultima_modifica;
+	public boolean getModificato() {
+		return modificato;
 	}
 	
-	public void setDataUltimaModifica(Date data) {
-		data_ultima_modifica=data;
+	public void setModificato(boolean modificato) {
+		this.modificatoa=modificato;
 	}
 
 	@Override
 	public String toString() {
 		return "Cappello [id=" + id + ", nome=" + nome + ", categoria=" + categoria + ", prezzo=" + prezzo + ", img="
-				+ foto + ", descrizione=" + descrizione + ", disp=" + disp + ", data ultima modifica="+data_ultima_modifica+"]";
+				+ foto + ", descrizione=" + descrizione + ", disp=" + disp + ", modificato="+ modificato +"]";
 	}
 }
