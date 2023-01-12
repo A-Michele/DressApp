@@ -91,6 +91,7 @@ public class ModificaServlet extends HttpServlet {
 			c.setDisp(dispo);
 		}
 		cDao.insertProduct(c.getNome(),c.getDescrizione(),c.getPrezzo(),c.getCategoria(),c.getFoto(),c.getDisp());
+		cDao.updateModificato(id);
 		response.sendRedirect("ProdottiAdmin.jsp");
 		
 	}
