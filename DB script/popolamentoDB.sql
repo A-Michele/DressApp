@@ -21,6 +21,7 @@ INSERT INTO Cappello VALUES(0,"Kappa HOPPA","HOPPA UNISEX",11.99,"Invernale","ka
 INSERT INTO Cappello VALUES(0,"Tommy Jeans","SPORT BEANIE UNISEX",21.99,"Invernale","tommy.jpg",5,false);
 INSERT INTO Cappello VALUES(0,"Champion","BEANIE UNISEX",9.99,"Invernale","champion.jpg",50,false);
 INSERT INTO Cappello VALUES(0,"Calvin Klein CLASSIC","CLASSIC NO FOLD BEANIE UNISEX",34.99,"Invernale","ck.jpg",15,false);
+INSERT INTO Cappello VALUES(0,"Relax Days","Cappello porta bibite",19.99,"Alcolisti","portabirra.JPG",200,true);
 INSERT INTO Cappello VALUES(0,"Nike Performance","AERO ADVANTAGE VISOR",19.99,"Sport","nikeperformance.jpg",100,false);
 INSERT INTO Cappello VALUES(0,"Under Armour","ISOCHILL LAUNCH",11.99,"Sport","underarmour.jpg",100,false);
 INSERT INTO Cappello VALUES(0,"The North Face SUN","SUN STASH HAT UNISEX",17.99,"Vintage","northfacevintage.jpg",40,false);
@@ -30,9 +31,8 @@ INSERT INTO Cappello VALUES(0,"FENDI KIDS","Baby - Berretto in cotone e cashmere
 INSERT INTO Cappello VALUES(0,"MOSCHINO","BABY HAT UNISEX",25.99,"Luxory","moschinobaby.jpg",50,false);
 INSERT INTO Cappello VALUES(0,"Burberry","Cappello da pescatore in cotone tecnico con motivo Vintage check",290.00,"Luxory","burberry.jpg",5,false);
 INSERT INTO Cappello VALUES(0,"Givenchy","Berretto di tela con corna",900.00,"Luxory","givenchy.jpg",1,true);
-INSERT INTO Cappello VALUES(0,"Relax Days","Cappello porta bibite",19.99,"Alcolisti","portabirra.JPG",200,true);
 INSERT INTO Cappello VALUES(0,"Givenchy","Berretto ",9.00,"Luxory","givenchy.jpg",1,false);
-INSERT INTO Cappello VALUES(0,"Stress Days","Cappello porta bibite",19.99,"Alcolisti","portabirra.JPG",200,false);
+INSERT INTO Cappello VALUES(0,"Gucci","Cappellodi lusso",519.99,"Luxory","gucci.JPG",10,false);
 
 INSERT INTO Card VALUES(0,"Michele Alaia",4041012257867950,"10/2028",618,1);
 INSERT INTO Card VALUES(0,"Francesco Ferrara",4030283157649078,"12/2027",459,2);
