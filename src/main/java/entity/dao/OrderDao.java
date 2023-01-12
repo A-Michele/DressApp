@@ -187,7 +187,7 @@ public class OrderDao {
 		try {
 			query="SELECT ordine.* FROM ordine JOIN dettaglioordine JOIN cappello WHERE ordine.id=dettaglioordine.ordine AND dettaglioordine.cappello=cappello.id  AND ordine.is_buy=1 AND cappello.nome=?  ";
 			pst=this.con.prepareStatement(query);
-            pst.setString(1,nome);
+            pst.setString(1,"%"+nome+"%");
             rs=pst.executeQuery();
             while(rs.next()) {
             	o= new Ordine();
