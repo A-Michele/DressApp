@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-expand-lg bg-dark">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="show-products"><img src="product-images/logo.jpg" alt="logo" width="10%" height="10px" class="logo"></a>
+		<a class="navbar-brand" href="show-products"><img style="max-width:100px; margin-top: -7px;" src="product-images/logo.jpg" alt="logo"></a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
