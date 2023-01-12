@@ -30,7 +30,7 @@
 <meta charset="UTF-8">
 
 <link rel="icon" href="product-images/logo.jpg" type="image/jpg"> 
-<title>DressApp - Ordini Utente</title>
+<title>DressApp - Ordini</title>
 <%@ include file="includes/header.jsp" %>
 </head>
 <body>
