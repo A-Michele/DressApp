@@ -87,6 +87,7 @@ public class ModificaServlet extends HttpServlet {
 			if(change==0) {
 				cDao.updateDisp(id,dispo);
 				response.sendRedirect("ProdottiAdmin.jsp");
+				return;
 			}
 			c.setDisp(dispo);
 		}
