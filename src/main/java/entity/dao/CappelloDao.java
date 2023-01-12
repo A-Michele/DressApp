@@ -177,4 +177,16 @@ public class CappelloDao {
             e.printStackTrace();
         }
 	}
+	public void riduciDisponibilita(int p_id, int quantita) {
+		try {
+            query="UPDATE Cappello SET disponibilita=? WHERE id=?";
+            pst=this.con.prepareStatement(query);
+            pst.setInt(1, quantita);
+            pst.setInt(2, p_id);
+            pst.executeUpdate();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+		
+	}
 }
