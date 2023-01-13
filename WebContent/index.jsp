@@ -14,9 +14,14 @@ if (auth != null) {
 	auth.setIsGuest(1);
 	request.getSession().setAttribute("auth", auth);
 }
-List<Cappello> products = (List<Cappello>) request.getSession().getAttribute("products");
-ArrayList<Cappello> product_list = (ArrayList<Cappello>) request.getAttribute("search-product");
-%>
+Boolean check=(Boolean) request.getSession().getAttribute("checkOut");
+if(check!=null){
+	%><div class="alert" style="color:white;background-color:red;text-align:center;">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+  <h4>Ordine effettuato</h4>
+</div><%
+}
+request.getSession().setAttribute("checkOut", null);
 
 <!DOCTYPE html>
 <html>
