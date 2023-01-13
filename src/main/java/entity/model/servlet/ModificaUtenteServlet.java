@@ -38,7 +38,7 @@ public class ModificaUtenteServlet extends HttpServlet {
 				UserDao user= new UserDao(DbCon.getConnection());
 				boolean b= user.doUpdateById(id, "email", nuovaEmail);
 				if(b==true) {
-					response.sendRedirect("modificheUtente.jsp");
+					response.sendRedirect("index.jsp");
 				}
 				else {
 					System.out.println("Errore update Email");
@@ -56,7 +56,7 @@ public class ModificaUtenteServlet extends HttpServlet {
 				UserDao user= new UserDao(DbCon.getConnection());
 				boolean b= user.doUpdateById(id, "password", nuovaPassword);
 				if(b==true) {
-					response.sendRedirect("modificheUtente.jsp");
+					response.sendRedirect("index.jsp");
 				}
 				else {
 					System.out.println("Errore update password");
