@@ -22,6 +22,7 @@ if(check!=null){
 </div><%
 }
 request.getSession().setAttribute("checkOut", null);
+List<Cappello> products = (List<Cappello>) request.getSession().getAttribute("products"); ArrayList<Cappello> product_list = (ArrayList<Cappello>) request.getAttribute("search-product"); %>
 
 <!DOCTYPE html>
 <html>
