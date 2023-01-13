@@ -62,8 +62,13 @@ request.getSession().setAttribute("total", total);
 	<div class="container">
 		<div class="d-flex py-3">
 			<h3>Totale: &euro; ${ (total>0)?dcf.format(total):0 }</h3>
+			<%if(ordine.getDate()==null){
+				%>
+				&ensp;&ensp;&ensp;<h4><p style="color: red">*Carrello vuoto...Inserisci almeno un prodotto</p></h4>
+				<%
+			}else{%>
 			<a class="mx-3 btn btn-primary" href="sceltaPagamento.jsp" style="background: #404040;border:#404040">Check out</a>
-			
+			<%}%>
 		</div>
 		<h6 style="text-align:right;"><%
 						String error = null;
