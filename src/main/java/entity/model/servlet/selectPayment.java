@@ -52,6 +52,7 @@ public class selectPayment extends HttpServlet {
 			
 			boolean x = oDao.changeState(o_id);
 			if(x==true) {
+				request.getSession().setAttribute("checkOut", true);
 				response.sendRedirect("index.jsp");
 		}
 			else System.out.println("Errore");
