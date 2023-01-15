@@ -1,4 +1,5 @@
 package entity.model;
+import java.util.Objects;
 
 public class Card {
 	private int id;
