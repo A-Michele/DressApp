@@ -80,10 +80,8 @@ public class CappelloDao {
 				pst=this.con.prepareStatement(query);
 				pst.execute();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-			 
+			}		 
 	}
 	
 	public void insertProduct(String nome,String descrizione,float costo,String categoria,String foto, int disp) {
