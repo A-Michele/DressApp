@@ -157,17 +157,20 @@ public class UserDao {
 		}
 	}
 	
-	//Metodo per fare UPDATE dell'user all'interno del db.. Attributo Ë l'attributo dell'entit‡, valore Ë il nuovo valore che vogliamo inserire
-	public void doUpdate(User utente,String attributo, String valore) throws SQLException {
-		
+	//Metodo per fare UPDATE dell'user all'interno del db.. Attributo √® l'attributo dell'entit√†, valore √® il nuovo valore che vogliamo inserire
+	public void doUpdate(User utente,String attributo, String valore) {
+		try {
 		String query = "UPDATE User set "+attributo+"=? where email= ?";
 		PreparedStatement ps = con.prepareStatement(query);
 		ps.setString(1, valore);
 		ps.setString(2, utente.getEmail());
 		ps.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public boolean doUpdateById(int id,String attributo, String valore) throws SQLException {
+	public boolean doUpdateById(int id,String attributo, String valore) {
 		
 		try{
 			String query = "UPDATE User set "+attributo+"=? where id= ?";
@@ -177,7 +180,7 @@ public class UserDao {
 			ps.executeUpdate();
 			return true;
 		}
-		catch(Exception e) {
+		catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return false;
