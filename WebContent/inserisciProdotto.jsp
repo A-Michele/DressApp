@@ -53,13 +53,13 @@ if (auth != null) {
 							name="cat" placeholder="Inserisci categoria..." required>
 					</div>
 					<div class="form-group">
-						<label>Disponibilità</label> <input type=text class="form-control"
+						<label>Disponibilita'</label> <input type=text class="form-control"
 							name="disp"
 							placeholder="Inserisci numero di pezzi disponibili...">
 					</div>
 					<div class="form-group">
 						<label>Foto</label> <input type=text class="form-control"
-							name="foto" placeholder="Inserisci nome file...">
+							name="foto" placeholder="Inserisci nome file..." required>
 					</div>
 					<div class="text-center">
 						<button type="submit" class="btn btn-primary" style="background: #404040;border:#404040">Inserisci prodotto</button>
