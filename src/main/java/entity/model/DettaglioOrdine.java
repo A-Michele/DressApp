@@ -35,4 +35,15 @@ public class DettaglioOrdine{
 		return "DettaglioOrdine [cappello=" + cappello + ", quantita=" + quantita + ", ordine=" + ordine + "]";
 	}
 	
+	@Override
+    	public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        DettaglioOrdine other = (DettaglioOrdine) obj;
+        return cappello == other.cappello && ordine == other.ordine && quantita == other.quantita;
+    }
 }
