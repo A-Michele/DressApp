@@ -53,7 +53,6 @@ public class CardDAO {
 				pst=this.con.prepareStatement(query);
 				pst.execute();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			 
@@ -80,23 +79,21 @@ public class CardDAO {
 	}
 	
 	public Card retriveCardById(int card_id) {
-		Card p=new Card();
 		try {
-
             query="SELECT * from Card where id=?";
             pst=this.con.prepareStatement(query);
             pst.setInt(1, card_id);
             rs=pst.executeQuery();
             while(rs.next()) {
+            	Card p=new Card();
             	p.setId(rs.getInt("id"));
             	p.setProprietario(rs.getString("proprietario"));
-            	p.setNumeroCarta(rs.getString("numeroCarta"));
-            	p.setDataScadenza(rs.getString("dataScadenza"));
+            	p.setNumeroCarta(rs.getString("numero_carta"));
+            	p.setDataScadenza(rs.getString("data_scadenza"));
             	p.setCvv(rs.getInt("cvv"));
             	p.setUser(rs.getInt("user"));
+            	return p;
             }
-            return p;
-			
         }catch(Exception e){
             e.printStackTrace();
         }
