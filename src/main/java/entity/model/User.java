@@ -82,4 +82,17 @@ public class User {
 				+ password + ", isAdmin=" + is_Admin + ", isGuest=" + is_Guest + "]";
 	}
 	
+	@Override
+    	public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        User other = (User) obj;
+        return Objects.equals(cognome, other.cognome) && Objects.equals(email, other.email) && id == other.id
+                && is_Admin == other.is_Admin && is_Guest == other.is_Guest && Objects.equals(name, other.name)
+                && Objects.equals(password, other.password);
+    }
 }
