@@ -48,6 +48,11 @@ public class ModificaUtenteServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		else {
+            request.getSession().setAttribute("mailNull", "mailNull");
+            response.sendRedirect("modificheUtente.jsp");
+            return;
+        }
 		
 		//-----------CONTROLLO PASSWORD--------
 		
@@ -66,7 +71,11 @@ public class ModificaUtenteServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
+		else {
+            request.getSession().setAttribute("passwordNull", "passwordNull");
+            response.sendRedirect("modificheUtente.jsp");
+            return;
+        }
 		
 	}
 
