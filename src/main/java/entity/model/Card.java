@@ -74,6 +74,18 @@ public class Card {
 				+ dataScadenza + ", cvv=" + cvv + ", user=" + user + "]";
 	}
 	
-	
+	@Override
+    	public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Card other = (Card) obj;
+        return cvv == other.cvv && Objects.equals(dataScadenza, other.dataScadenza) && id == other.id
+                && Objects.equals(numeroCarta, other.numeroCarta) && Objects.equals(proprietario, other.proprietario)
+                && user == other.user;
+    }
 	
 }
