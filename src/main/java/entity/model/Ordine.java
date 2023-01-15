@@ -1,5 +1,6 @@
 package entity.model;
 import java.sql.Date;
+import java.util.Objects;
 
 public class Ordine {
 	private int id;
