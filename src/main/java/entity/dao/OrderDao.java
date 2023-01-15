@@ -125,6 +125,7 @@ public class OrderDao {
 		return null;
 	}
 	
+	//Metodo utilizzato per ricercare un ordine per il quale non è stato ancora fatto il check-out
 	public Ordine doRetriveByIdBuy(int user) {
 		Ordine ordine= new Ordine();
 		try {
@@ -165,27 +166,11 @@ public class OrderDao {
 		}
 	}
 	
-	public boolean doUpdateById(int id,String attributo, String valore) throws SQLException {
-		
-		try{
-			String query = "UPDATE Ordine set "+attributo+"=? where id= ?";
-			PreparedStatement ps = con.prepareStatement(query);
-			ps.setString(1, valore);
-			ps.setInt(2, id);
-			ps.executeUpdate();
-			return true;
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
-	
 	public ArrayList<Ordine> searchOrdersFromNameProduct(String nome){
 		ArrayList<Ordine> tuttiOrdini= new ArrayList<Ordine>();
 		Ordine o=null;
 		try {
-			query="SELECT ordine.* FROM ordine JOIN dettaglioordine JOIN cappello WHERE ordine.id=dettaglioordine.ordine AND dettaglioordine.cappello=cappello.id  AND ordine.is_buy=1 AND cappello.nome LIKE ?  ";
+			query="SELECT DISTINCT ordine.* FROM ordine JOIN dettaglioordine JOIN cappello WHERE ordine.id=dettaglioordine.ordine AND dettaglioordine.cappello=cappello.id  AND ordine.is_buy=1 AND cappello.nome LIKE ?  ";
 			pst=this.con.prepareStatement(query);
             pst.setString(1,"%"+nome+"%");
             rs=pst.executeQuery();
