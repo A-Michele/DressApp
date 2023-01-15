@@ -24,7 +24,7 @@ public class DettaglioOrdineDAO {
 	}
 	
 	
-	public List<DettaglioOrdine> getAllDettaglioOrdini(){
+	public List<DettaglioOrdine> getAllDettaglioOrdini(){ //----------
 		List<DettaglioOrdine> dettagliOrdini=new ArrayList<DettaglioOrdine>();
 		try {
 			query="SELECT * FROM DettaglioOrdine";
@@ -44,7 +44,7 @@ public class DettaglioOrdineDAO {
 		return dettagliOrdini;
 	}
 	
-	public void insertDettaglioOrdine(int cappelloId,int quantita, int ordineId) {
+	public void insertDettaglioOrdine(int cappelloId,int quantita, int ordineId) { //-------
 		try {
             query="INSERT INTO DettaglioOrdine(cappello,ordine,quantita)"
             		+ " VALUES(?,?,?)";
@@ -88,7 +88,7 @@ public class DettaglioOrdineDAO {
 
 	
 //	private Restituisce i dettagli ordini contenenti L'id dell'ordine preso in input
-	public ArrayList<OrdineCompleto> searchOrdiniCompleti(int ordineId) {
+	public ArrayList<OrdineCompleto> searchOrdiniCompleti(int ordineId) { //---------
 		OrdineCompleto dettOrd=null;
 		ArrayList<OrdineCompleto> tuttidett= new ArrayList<OrdineCompleto>();
 		try {
@@ -119,20 +119,6 @@ public class DettaglioOrdineDAO {
 		return tuttidett;
 	}
 	
-	/*
-	 * public ArrayList<Ordine> searchOrder(String nomeCappello){ ArrayList<Ordine>
-	 * ordini= new ArrayList<Ordine>(); try {
-	 * query="SELECT user.email, cappello.nome, cappello.categoria, cappello.prezzo, dettaglioordine.quantita,ordine.data FROM user JOIN ordine JOIN dettaglioordine JOIN cappello WHERE cappello.id=dettaglioordine.cappello AND ordine.id=dettaglioordine.ordine AND ordine.user=user.id AND cappello.nome= ?"
-	 * ; pst=this.con.prepareStatement(query); pst.setString(1,nomeCappello);
-	 * rs=pst.executeQuery(); while(rs.next()) { ordine.setId(rs.getInt("id"));
-	 * ordine.setData(rs.getDate("data")); ordine.setUser(rs.getInt("user"));
-	 * ordine.setIsBuy(rs.getBoolean("is_buy")); } return ordine;
-	 * 
-	 * }catch(Exception e){ e.printStackTrace(); } return null; }
-	 */
-
-
-
 	public void updateQuantita(int quantita,int p_id, int ordine_id) {
 		try {
             query="UPDATE DettaglioOrdine SET quantita=? WHERE ordine=? AND cappello=?";
