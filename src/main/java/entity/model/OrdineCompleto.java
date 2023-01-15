@@ -1,4 +1,5 @@
 package entity.model;
+import java.util.Objects;
 
 import java.sql.Date;
 public class OrdineCompleto {
