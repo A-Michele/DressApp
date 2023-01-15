@@ -32,7 +32,7 @@ INSERT INTO Cappello VALUES(0,"MOSCHINO","BABY HAT UNISEX",25.99,"Luxory","mosch
 INSERT INTO Cappello VALUES(0,"Burberry","Cappello da pescatore in cotone tecnico con motivo Vintage check",290.00,"Luxory","burberry.jpg",5,false);
 INSERT INTO Cappello VALUES(0,"Givenchy","Berretto di tela con corna",900.00,"Luxory","givenchy.jpg",1,true);
 INSERT INTO Cappello VALUES(0,"Givenchy","Berretto ",9.00,"Luxory","givenchy.jpg",1,false);
-INSERT INTO Cappello VALUES(0,"Gucci","Cappellodi lusso",519.99,"Luxory","gucci.JPG",10,false);
+INSERT INTO Cappello VALUES(0,"Gucci","Cappellodi lusso",519.99,"Luxory","gucci.JPG",10,true);
 
 INSERT INTO Card VALUES(0,"Michele Alaia",4041012257867950,"10/2028",618,1);
 INSERT INTO Card VALUES(0,"Francesco Ferrara",4030283157649078,"12/2027",459,2);
