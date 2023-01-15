@@ -53,4 +53,16 @@ public class Ordine {
 		return "Ordine [id=" + id + ", data=" + data + ", user=" + user + ","
 				+ " isBuy=" + isBuy + "]";
 	}
+	
+	@Override
+   	public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Ordine other = (Ordine) obj;
+        return Objects.equals(data, other.data) && id == other.id && isBuy == other.isBuy && user == other.user;
+    }
 }
