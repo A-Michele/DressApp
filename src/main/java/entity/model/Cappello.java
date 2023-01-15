@@ -96,4 +96,19 @@ public class Cappello {
 		return "Cappello [id=" + id + ", nome=" + nome + ", categoria=" + categoria + ", prezzo=" + prezzo + ", img="
 				+ foto + ", descrizione=" + descrizione + ", disp=" + disp + ", modificato="+ modificato +"]";
 	}
+	
+	@Override
+    	public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Cappello other = (Cappello) obj;
+        return Objects.equals(categoria, other.categoria) && Objects.equals(descrizione, other.descrizione)
+                && disp == other.disp && Objects.equals(foto, other.foto) && id == other.id
+                && modificato == other.modificato && Objects.equals(nome, other.nome)
+                && Float.floatToIntBits(prezzo) == Float.floatToIntBits(other.prezzo);
+    }
 }
