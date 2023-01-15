@@ -1,6 +1,7 @@
 package entity.model;
 
 import java.sql.Date;
+import java.util.Objects;
 
 public class Cappello {
 	
