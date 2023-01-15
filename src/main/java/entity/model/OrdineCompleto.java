@@ -60,7 +60,17 @@ public class OrdineCompleto {
 				+ ", quantita=" + quantita + ", data=" + data + "]";
 	}
 	
-	
-	
-	
+	@Override
+    	public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        OrdineCompleto other = (OrdineCompleto) obj;
+        return Objects.equals(categoria, other.categoria) && Objects.equals(data, other.data)
+                && Objects.equals(email, other.email) && Objects.equals(nomeC, other.nomeC)
+                && Float.floatToIntBits(prezzo) == Float.floatToIntBits(other.prezzo) && quantita == other.quantita;
+    }
 }
